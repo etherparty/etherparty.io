@@ -12,11 +12,29 @@ logger.setLevel(666)
 logger.addHandler(logging.FileHandler(log_file))
 
 def log__():
-   logger.log(666,"[ %s ] - IP %s - QS %s - METHOD %s - REMOTEIP %s - UAGENT %s - LANG %s - COOKIE %s - PATH %s", strftime("%Y-%m-%d %H:%M:%S"),  request.environ['HTTP_CF_CONNECTING_IP'], request.environ['QUERY_STRING'], request.environ['REQUEST_METHOD'], request.environ['REMOTE_ADDR'], request.environ['HTTP_USER_AGENT'], request.environ['HTTP_ACCEPT_LANGUAGE'], "None" if 'HTTP_COOKIE' not in request.environ else request.environ['HTTP_COOKIE'], request.environ['PATH_INFO'])
+   _env = request.environ
+   keys = ['HTTP_CF_CONNECTING_IP','QUERY_STRING', 'REQUEST_METHOD', 'REMOTE_ADDR', 
+           'HTTP_USER_AGENT','HTTP_ACCEPT_LANGUAGE', 'HTTP_COOKIE', 'PATH_INFO' ]
+   result = []
+
+   for key in keys:
+      result.append('None' if key not in _env else _env[key])
+
+   logger.log(666,"[ %s ] - IP %s - QS %s - METHOD %s - REMOTEIP %s - UAGENT %s - LANG %s - COOKIE %s - PATH %s", strftime("%Y-%m-%d %H:%M:%S"),  result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7])
 
 @app.route("/")
 def main_():
    return ''.join(open('index.html').readlines())
+
+@app.route("/builder") #contracts builder
+def builder():
+   return ''.join(open('builder.html').readlines())
+
+@app.route("/compile", methods=['POST'])
+def compile_contract():
+   #contract = request.form['contract'] #re.sub(r'\W+','', request.form['source'])
+   #print([contract.split('\r\n')])
+   return 'Not implemented';#contract
 
 @app.after_request
 def req_hand(res):
