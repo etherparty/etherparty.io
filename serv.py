@@ -1,19 +1,27 @@
-#  $ serpent compile 'return(msg.data[0]*2)'
-#  600e80600b60003960195860026000350260005460206000f26000f2
-#  $ serpent encode_datalist '53'
-#  0000000000000000000000000000000000000000000000000000000000000035
+#etherparty.io v1
+#GPLv3
 
-import apsw, re, random, binascii
+import apsw, re, random, binascii, logging, subprocess
+from epconfig import *
+from time import gmtime, strftime
 from flask import Flask, request
 app = Flask(__name__)
-import subprocess
 
-xcp_dir = '/dir/for/counterpartyd/' 
-data_dir = '/dir/for/counterpartyd/database/'
+logger = logging.getLogger('werkzeug')
+logger.setLevel(666)
+logger.addHandler(logging.FileHandler(log_file))
+
+def log__():
+   logger.log(666,"[ %s ] - IP %s - QS %s - METHOD %s - REMOTEIP %s - UAGENT %s - LANG %s - COOKIE %s - PATH %s", strftime("%Y-%m-%d %H:%M:%S"),  request.environ['HTTP_CF_CONNECTING_IP'], request.environ['QUERY_STRING'], request.environ['REQUEST_METHOD'], request.environ['REMOTE_ADDR'], request.environ['HTTP_USER_AGENT'], request.environ['HTTP_ACCEPT_LANGUAGE'], "None" if 'HTTP_COOKIE' not in request.environ else request.environ['HTTP_COOKIE'], request.environ['PATH_INFO'])
 
 @app.route("/")
 def main_():
    return ''.join(open('index.html').readlines())
+
+@app.after_request
+def req_hand(res):
+  log__()
+  return res
 
 @app.route("/publish", methods=['POST'])
 def publish():
@@ -60,7 +68,7 @@ def execute():
 def findcontractid():
     txid = re.sub(r'\W+', '', request.form['txid'])
     try:
-      db = apsw.Connection('/file/to/counterpartyd/database.db')
+      db = apsw.Connection(db_file)
       cursor = db.cursor()
       rows = list(cursor.execute('''SELECT * FROM executions WHERE tx_hash=?''', (txid,) ))
       print(rows, 'a')
@@ -80,7 +88,7 @@ def findcontractid():
 def fetchcontractresult():
     txid = re.sub(r'\W+', '', request.form['txid'])
     try:
-      db = apsw.Connection('/file/to/counterpartyd/database')
+      db = apsw.Connection(db_file)
       cursor = db.cursor()
       rows = list(cursor.execute('''SELECT * FROM executions WHERE tx_hash=?''', (txid,) ))
       print(rows, 'a')
@@ -127,4 +135,4 @@ def getgas():
     return output; 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=80, debug=True)
+    app.run(host="0.0.0.0",port=80, debug=False, use_reloader=True)
