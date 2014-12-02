@@ -1,4 +1,5 @@
 db_file = '/home/user/.config/counterpartyd/counterpartyd.testnet.db'
 log_file = '/home/user/access.log'
 xcp_dir = '/home/user/counterpartyd_build/dist/counterpartyd/' 
+serpent_dir = '/home/user/ethereum/serpent/'
 data_dir = '/home/user/.config/counterpartyd/'

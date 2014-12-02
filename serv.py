@@ -1,7 +1,7 @@
 #etherparty.io v1
 #GPLv3
 
-import apsw, re, random, binascii, logging, subprocess
+import apsw, re, random, binascii, logging, subprocess, os
 from epconfig import *
 from time import gmtime, strftime
 from flask import Flask, request
@@ -20,7 +20,9 @@ def log__():
    for key in keys:
       result.append('None' if key not in _env else _env[key])
 
-   logger.log(666,"[ %s ] - IP %s - QS %s - METHOD %s - REMOTEIP %s - UAGENT %s - LANG %s - COOKIE %s - PATH %s", strftime("%Y-%m-%d %H:%M:%S"),  result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7])
+   result.append(request.form if len(request.form) > 0 else 'None' )
+
+   logger.log(666,"[ %s ] - IP %s - QS %s - METHOD %s - REMOTEIP %s - UAGENT %s - LANG %s - COOKIE %s - PATH %s - FORM %s", strftime("%Y-%m-%d %H:%M:%S"),  result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8])
 
 @app.route("/")
 def main_():
@@ -32,9 +34,11 @@ def builder():
 
 @app.route("/compile", methods=['POST'])
 def compile_contract():
-   #contract = request.form['contract'] #re.sub(r'\W+','', request.form['source'])
-   #print([contract.split('\r\n')])
-   return 'Not implemented';#contract
+   contract = request.form['contract'].encode('ascii',errors='ignore').decode('ascii')
+   contract_exec = subprocess.check_output(['echo', '-e', '\'' + contract.replace('\r\n','\n') + '\'']).decode('utf-8')
+   hexdata = subprocess.check_output([serpent_dir + 'serpent', 'compile', '\"' + contract_exec + '\"' ],stderr=subprocess.STDOUT).decode('utf-8')
+   print(hexdata)
+   return hexdata;
 
 @app.after_request
 def req_hand(res):
@@ -43,7 +47,6 @@ def req_hand(res):
 
 @app.route("/publish", methods=['POST'])
 def publish():
-    print(['test', request.form])
     source = re.sub(r'\W+','', request.form['source'])
     code_hex = re.sub(r'\W+','', request.form['codehex'])
     gasprice = re.sub(r'\W+','', request.form['gasprice'])
