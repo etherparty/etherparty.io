@@ -35,10 +35,16 @@ def builder():
 @app.route("/compile", methods=['POST'])
 def compile_contract():
    contract = request.form['contract'].encode('ascii',errors='ignore').decode('ascii')
-   contract_exec = subprocess.check_output(['echo', '-e', '\'' + contract.replace('\r\n','\n') + '\'']).decode('utf-8')
-   hexdata = subprocess.check_output([serpent_dir + 'serpent', 'compile', '\"' + contract_exec + '\"' ],stderr=subprocess.STDOUT).decode('utf-8')
-   print(hexdata)
-   return hexdata;
+   try:
+        contract_exec = subprocess.check_output(['echo', '-e', '\'' + contract.replace('\r\n','\n') + '\'']).decode('utf-8')
+        hexdata = subprocess.check_output([serpent_dir + 'serpent', 'compile', '\"' + contract_exec + '\"' ],stderr=subprocess.STDOUT).decode('utf-8')
+        print(hexdata)
+        output = "<h3> 0099 SUCCESS <br> CONTRACT %s <br> " % hexdata
+   except Exception as e:
+        print(e)
+        output = "<h3> 0098 ERR <br> REASON %s " % e.output
+
+   return output;
 
 @app.after_request
 def req_hand(res):
