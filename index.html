@@ -68,7 +68,8 @@ Example 1
    <input name="gasprice" placeholder="gas price" class="form-control" type="text" /> 
    <input name="startgas" placeholder="start gas" class="form-control" type="text" /> 
    <input name="value" placeholder="value" class="form-control" type="text" />
-   <input name="payload" placeholder="payload" class="form-control" type="text" />        
+   <input name="payload" placeholder="payload" class="form-control" type="text" /> 
+   <br>
     <input type="submit" class="btn btn-lg btn-danger" value="Execute Contract" />  
 
    <p class="help-block "> This allows you to execute a piece of contract code against another contract ID, <br> use the transaction id to get the result. </p>   </h4>
@@ -82,6 +83,7 @@ Example 1
 <form name="findID" action="/findcontractid" method="post">
    <h4 class="col-xs-6"> Find Contract 
    <input name="txid" placeholder="txid" class="form-control" type="text" />
+   <br>
    <input type="submit" class="btn btn-lg btn-danger" value="Find ContractID" />
    <p class="help-block "> This allows you to retreive the contractID for a published transaction, <br> which is useful in executing against other scripts. </p>   </h4>
    </h4>
@@ -89,6 +91,7 @@ Example 1
 <form name="findeval" action="/fetchcontractresult" method="post">
    <h4 class="col-xs-6" > Fetch Result 
    <input name="txid" placeholder="txid" class="form-control" type="text" />
+   <br>
    <input type="submit" class="btn btn-lg btn-danger" value="Fetch Contract Result" />
    <p class="help-block "> This retreives the result of a given contract piece, <br> when run against another contract. </p>   </h4>
 </form>
@@ -99,11 +102,13 @@ Example 1
 <form name="getgas" action="/getgas" method="post">
    <h4 class="col-xs-6" >
    <input name="address" placeholder="bitcoin address" class="form-control" type="text" />
+   <br>
    <input type="submit" class="btn btn-lg btn-danger" value="Get Gas" />
    <p class="help-block "> This consumes btc and gives your specified address gas, <br> you need to have at least 0.25 btc before attemping this. </p>   </h4>
 </form>
 <form name="getaddr" action="/getaddress" method="post">
  <h4 class="col-xs-6"> 
+ <br>
  <input type="submit" class="btn btn-lg btn-danger" value="Get New Address" />  
    <p class="help-block "> This creates an address for you to use on our server, <br> you will need to put Test Bitcoins here to get Gas. </p>
 </h4>
