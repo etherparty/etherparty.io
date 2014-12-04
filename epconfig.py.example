@@ -3,3 +3,7 @@ log_file = '/home/user/access.log'
 xcp_dir = '/home/user/counterpartyd_build/dist/counterpartyd/' 
 serpent_dir = '/home/user/ethereum/serpent/'
 data_dir = '/home/user/.config/counterpartyd/'
+validassets = [
+  'assets/bootstrap.css', 
+  'assets/flatui.css',
+]

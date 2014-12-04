@@ -37,7 +37,7 @@ def builder():
 @app.route("/<path:filepath>")
 #Assets
 def assets(filepath):
-   return Response(response=(filepath if filepath not in ['assets/bootstrap.css', 'assets/flatui.css'] else ''.join(open(filepath).readlines())), mimetype='text/css')
+   return Response(response=(filepath if filepath not in validassets else ''.join(open(filepath).readlines())), mimetype='text/css')
 
 
 @app.route("/compile", methods=['POST'])
@@ -70,7 +70,7 @@ def publish():
          hexdata = subprocess.check_output([xcp_dir + "counterpartyd.py","--testnet", "--unconfirmed", "--data-dir=" + data_dir,"publish", "--source=" + source ,"--code-hex=" + code_hex , "--gasprice=" + gasprice , "--startgas=" + startgas, "--endowment=" + endowment], stderr=subprocess.STDOUT).decode('utf-8').replace('\n', '').split(';')
          print(hexdata)
          #output = "<h3> 0099 SUCCESS <br> UNSIGNED %s <br> SIGNED %s <br> TXID %s <br> " % (hexdata[0],hexdata[1], hexdata[2])
-         output = "<h3> 0099 SUCCESS <br> TXID %s <br> " % hexdata[2]
+         output = "<h3> 0099 SUCCESS <br> TXID %s <br> NOTE You will need to wait a few minutes for the transaction to confirm, before you attempt to retreive the contract ID" % hexdata[2]
     except Exception as e:
       print(e)
       #if 'output' in e:
@@ -158,7 +158,7 @@ def getaddress():
 def getgas():
     address = re.sub(r'\W+', '', request.form['address'])
     try:
-      hexdata = subprocess.check_output([xcp_dir + "counterpartyd.py","--testnet", "--unconfirmed", "--data-dir=" + data_dir,"burn", "--source=" + address  ,"--quantity=0.25"  ], stderr=subprocess.STDOUT).decode('utf-8').replace('\n', '').split(';')
+      hexdata = subprocess.check_output([xcp_dir + "counterpartyd.py","--testnet", "--unconfirmed", "--data-dir=" + data_dir,"burn", "--source=" + address  ,"--quantity=0.05"  ], stderr=subprocess.STDOUT).decode('utf-8').replace('\n', '').split(';')
       print(hexdata)
       output = "<h3> 0102 GASADDED <br> ADDRESS %s <br> QUANTITY %s </h3>" % (address, 'plenty') 
     except Exception as e:
