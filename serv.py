@@ -4,7 +4,7 @@
 import apsw, re, random, binascii, logging, subprocess, os
 from epconfig import *
 from time import gmtime, strftime
-from flask import Flask, request
+from flask import Flask, request, Response
 app = Flask(__name__)
 
 logger = logging.getLogger('werkzeug')
@@ -25,12 +25,20 @@ def log__():
    logger.log(666,"[ %s ] - IP %s - QS %s - METHOD %s - REMOTEIP %s - UAGENT %s - LANG %s - COOKIE %s - PATH %s - FORM %s", strftime("%Y-%m-%d %H:%M:%S"),  result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8])
 
 @app.route("/")
-def main_():
+#Root
+def root():
    return ''.join(open('index.html').readlines())
 
-@app.route("/builder") #contracts builder
+@app.route("/builder")
+#Builder
 def builder():
    return ''.join(open('builder.html').readlines())
+
+@app.route("/<path:filepath>")
+#Assets
+def assets(filepath):
+   return Response(response=(filepath if filepath not in ['assets/bootstrap.css', 'assets/flatui.css'] else ''.join(open(filepath).readlines())), mimetype='text/css')
+
 
 @app.route("/compile", methods=['POST'])
 def compile_contract():
