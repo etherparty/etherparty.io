@@ -2,7 +2,8 @@
 #GPLv3
 
 import apsw, re, random, binascii, logging, subprocess, os
-from epconfig import *
+from epconfig_faiz import *
+from opcodes import *
 from time import gmtime, strftime
 from flask import Flask, request, Response
 app = Flask(__name__)
@@ -39,18 +40,43 @@ def builder():
 def assets(filepath):
    return Response(response=(filepath if filepath not in validassets else ''.join(open(filepath).readlines())), mimetype='text/css')
 
-
 @app.route("/compile", methods=['POST'])
 def compile_contract():
    contract = request.form['contract'].encode('ascii',errors='ignore').decode('ascii')
    try:
-        contract_exec = subprocess.check_output(['echo', '-e', '\'' + contract.replace('\r\n','\n') + '\'']).decode('utf-8')
-        hexdata = subprocess.check_output([serpent_dir + 'serpent', 'compile', '\"' + contract_exec + '\"' ],stderr=subprocess.STDOUT).decode('utf-8')
+        contract_exec = subprocess.check_output(['echo', '-en',  contract.replace('\r\n','\n').rstrip() ]).decode('utf-8').lstrip()
+        hexdata = subprocess.check_output([serpent_dir + 'serpent', 'compile',  contract_exec  ],stderr=subprocess.STDOUT).decode('utf-8')
         print(hexdata)
         output = "<h3> 0099 SUCCESS <br> CONTRACT %s <br> " % hexdata
    except Exception as e:
         print(e)
         output = "<h3> 0098 ERR <br> REASON %s " % e.output
+
+   return output;
+
+@app.route("/gascalc", methods=['POST'])
+def gascalc():
+   contract = re.sub(r'\W+','', request.form['codehex'].encode('ascii',errors='ignore').decode('ascii') )
+   try:
+        hexdata = subprocess.check_output([serpent_dir + 'serpent', 'deserialize', contract ],stderr=subprocess.STDOUT).decode('utf-8').split(' ')[:-1]
+
+        #for i in range(0,len(hexdata)):
+        #  try:
+        #    hexdata[i] = int(hexdata[i])
+        #  except Exception as e:
+        #    pass #is not integer
+
+        multiplier = float( (2600001 * 100000000) / (2700000 * 100000000) ) * 100
+        totalcost =  int( int( multiplier * 500 ) + (len(contract)/2) * int(5 * multiplier) )
+
+        #for op_ in hexdata:
+        #  if type(op_) == type(''):
+        #    totalcost += opcodes[op_]
+
+        output = "<h3> 0099 SUCCESS <br> CONTRACT %s <br> GASPRICE %s <br> STARTGAS %s <br> " % (hexdata, 1, totalcost)
+   except Exception as e:
+        print(e)
+        output = "<h3> 0098 ERR <br> REASON %s " % e
 
    return output;
 
@@ -67,7 +93,7 @@ def publish():
     startgas = re.sub(r'\W+','', request.form['startgas'])
     endowment = re.sub(r'\W+','', request.form['endowment'])
     try:
-         hexdata = subprocess.check_output([xcp_dir + "counterpartyd.py","--testnet", "--unconfirmed", "--data-dir=" + data_dir,"publish", "--source=" + source ,"--code-hex=" + code_hex , "--gasprice=" + gasprice , "--startgas=" + startgas, "--endowment=" + endowment], stderr=subprocess.STDOUT).decode('utf-8').replace('\n', '').split(';')
+         hexdata = subprocess.check_output([xcp_dir + "counterparty-cli.py","--testnet", "--unconfirmed", "--data-dir=" + data_dir,"publish", "--source=" + source ,"--code-hex=" + code_hex , "--gasprice=" + gasprice , "--startgas=" + startgas, "--endowment=" + endowment], stderr=subprocess.STDOUT).decode('utf-8').replace('\n', '').split(';')
          print(hexdata)
          #output = "<h3> 0099 SUCCESS <br> UNSIGNED %s <br> SIGNED %s <br> TXID %s <br> " % (hexdata[0],hexdata[1], hexdata[2])
          output = "<h3> 0099 SUCCESS <br> TXID %s <br> NOTE You will need to wait a few minutes for the transaction to confirm, before you attempt to retreive the contract ID" % hexdata[2]
@@ -158,7 +184,7 @@ def getaddress():
 def getgas():
     address = re.sub(r'\W+', '', request.form['address'])
     try:
-      hexdata = subprocess.check_output([xcp_dir + "counterpartyd.py","--testnet", "--unconfirmed", "--data-dir=" + data_dir,"burn", "--source=" + address  ,"--quantity=0.05"  ], stderr=subprocess.STDOUT).decode('utf-8').replace('\n', '').split(';')
+      hexdata = subprocess.check_output([xcp_dir + "counterpartyd.py","--testnet", "--unconfirmed", "--data-dir=" + data_dir,"burn", "--source=" + address  ,"--quantity=0.001"  ], stderr=subprocess.STDOUT).decode('utf-8').replace('\n', '').split(';')
       print(hexdata)
       output = "<h3> 0102 GASADDED <br> ADDRESS %s <br> QUANTITY %s </h3>" % (address, 'plenty') 
     except Exception as e:
@@ -169,5 +195,20 @@ def getgas():
 
     return output; 
 
+@app.route("/checkgas", methods=['POST'])
+def checkgas():
+    address = re.sub(r'\W+', '', request.form['address'])
+    try:
+      hexdata = subprocess.check_output([xcp_dir + "counterparty-cli.py","--testnet", "--unconfirmed", "--data-dir=" + data_dir,"balances", address ], stderr=subprocess.STDOUT).decode('utf-8').replace('\n', '').split(';')[0]
+      
+      output = "<h3> 0102 GASCHECK <br> ADDRESS %s <br> QUANTITY %s </h3>" % (address, (hexdata[ hexdata.find('XCP'): ]).split('|')[1].replace('.','')) 
+    except Exception as e:
+      print(e)
+      #if 'output' in e:
+      output = "<h3> 0098 ERR <br> REASON %s " % e.output
+      #else: output = e
+
+    return output; 
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=80, debug=False, use_reloader=True)
+    app.run(host="0.0.0.0",port=80, debug=True, use_reloader=True)

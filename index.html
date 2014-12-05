@@ -83,9 +83,9 @@ BTC: 0 0 0
 
       <form name="gascalc" action="/gascalc" method="post">
         <h4 class="col-xs-push-2 col-xs-8"> 
-          <input name="gascalc" placeholder="code hex" class="form-control" type="text" /disabled>
+          <input name="codehex" placeholder="contract/code hex" class="form-control" type="text" />
           <br>
-          <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Calculate startgas/gasprice/neededgas" /disabled>  
+          <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Calculate startgas/gasprice" />
           <p class="help-block text-center"> Enter contract here to have the gas price calculated for you, or see below for more information. </p>
         </h4>
       </form>
@@ -133,8 +133,17 @@ Every transaction must contain, alongside its other data, a GASPRICE and STARTGA
         <h4 class="col-xs-push-1 col-xs-5" >
         <input name="address" placeholder="bitcoin address" class="form-control" type="text" /> <br>
         <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Get Gas" />
-        <p class="help-block "> This consumes btc and gives your specified address gas, you need to have at least 0.05 btc before attemping this. </p>   </h4>
+        <p class="help-block "> This consumes btc and gives your specified address gas, you need to have at least 0.001 btc before attemping this. </p>   </h4>
       </form>
+      <form name="checkgas" action="/checkgas" method="post">
+        <h4 class="col-xs-push-1 col-xs-5" >
+        <input name="address" placeholder="bitcoin address" class="form-control" type="text" /> <br>
+        <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Check Gas" />
+        <p class="help-block "> This tells you your specified address' collected gas. </p>   </h4>
+      </form>
+      </div>
+
+<div class="row">
       <form name="payload" action="/payload" method="post">
         <h4 class="col-xs-push-1 col-xs-5"> 
           <input name="payload" placeholder="numeric value" class="form-control" type="text" /disabled> <br>
@@ -142,12 +151,8 @@ Every transaction must contain, alongside its other data, a GASPRICE and STARTGA
           <p class="help-block "> This creates a hex representation to use to construct a payload, which is used during Execution of a contract. </p>
         </h4>
       </form>
-
-      </div>
-
-<div class="row">
       <form name="getaddr" action="/getaddress" method="post">
-        <h4 class="col-xs-push-1 col-xs-10"> 
+        <h4 class="col-xs-push-1 col-xs-5"> 
           <input name="address" placeholder="bitcoin address" class="invisible form-control" type="text" /> <br>
           <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Get New Address" />  
           <p class="help-block "> This creates an address for you to use on our server, you will need to put Test Bitcoins here to get Gas. </p>
