@@ -2,7 +2,7 @@
 #GPLv3
 
 import apsw, re, random, binascii, logging, subprocess, os
-from epconfig_faiz import *
+from epconfig import *
 from opcodes import *
 from time import gmtime, strftime
 from flask import Flask, request, Response
@@ -211,4 +211,4 @@ def checkgas():
     return output; 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=80, debug=True, use_reloader=True)
+    app.run(host="0.0.0.0",port=80, debug=False, use_reloader=True)
