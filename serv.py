@@ -30,6 +30,11 @@ def log__():
 def root():
    return ''.join(open('index.html').readlines())
 
+@app.route("/preview")
+#Preview
+def preview():
+   return ''.join(open('preview.html').readlines())
+
 @app.route("/builder")
 #Builder
 def builder():
