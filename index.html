@@ -11,31 +11,29 @@
     <link rel="shortcut icon" href="img/favicon.ico">
   </head>
   <body>
-    <div class="col-xs-1"> </div>
-    <div class="container col-xs-10">
+    <div class="col-xs-2"> </div>
+    <div class="container col-xs-10 ">
     <br>
-    <nav class="navbar col-xs-10 col-xs-push-1 navbar-inverse navbar-embossed">
+
+    <nav class="navbar col-xs-10 navbar-inverse navbar-embossed">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">EtherParty! Rawr </a>
     </div>
     </nav>
 
-      <div class="col-xs-10 col-xs-push-1">
+      <div class="col-xs-10">
 
-    <div class="jumbotron">
-    <h4>Welcome to Smart Contracts on the Blockchain</h4>
-      <small class="hidden"> Status: counterpartyd <br> Status: Bitcoind <br> Status: XYZ <br> </small>
-      <blockquote> <small> Contracts interact with each other through an activity that is alternately called either "calling" or "sending messages". A "message" is an object containing some quantity of ether (a special internal currency used in Ethereum with the primary purpose of paying transaction fees), a byte-array of data of any size, the addresses of a sender and a recipient. </small> </blockquote> </div>
-
-    <div class="well well-md text-left">
-    Step 1: Create Contract (use examples provided as we're still in Alpha!)
-    <br>
-    Step 2: Publish Contract via Etherparty and claim your Contract ID
-    <br>
-    Step 3: Execute Contract with your values
-    <br>
-    (First time running Etherparty? Create a New Address and load up on Gas - you're going to need it to fuel your contract!)
+    <div>
+    <h2>Welcome to Smart Contracts on the Blockchain</h2>
+    <small class="hidden"> Status: counterpartyd <br> Status: Bitcoind <br> Status: XYZ <br> </small>
     </div>
+      <br>
+<blockquote class="small text-left">
+<li>Step 1: Create Contract (use examples provided as we're still in Alpha!)</li>
+<li>Step 2: Publish Contract via Etherparty and claim your Contract ID</li>
+<li>Step 3: Execute Contract with your values</li>
+<li>First time running Etherparty? Create a New Address and load up on Gas - you're going to need it to fuel your contract!</li>
+</blockquote>
 
      <ul class="nav nav-pills">
       <li class="col-xs-push-4 well well-sm"><a href="builder">See Contract Examples</a></li>
@@ -146,9 +144,9 @@ BTC: 0 0 0
 <div class="row">
       <form name="payload" action="/payload" method="post">
         <h4 class="col-xs-push-1 col-xs-5"> 
-          <input name="payload" placeholder="numeric value" class="form-control" type="text" /disabled> <br>
-          <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Construct Payload" /disabled>  
-          <p class="help-block "> This creates a hex representation to use to construct a payload, which is used during Execution of a contract. </p>
+          <input name="payload" placeholder="numeric value" class="form-control" type="text" /> <br>
+          <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Construct Payload" />
+          <p class="help-block "> This creates a hex representation to use to construct a payload, example payload would be "4 4 4 4" </p>
         </h4>
       </form>
       <form name="getaddr" action="/getaddress" method="post">
@@ -164,9 +162,8 @@ BTC: 0 0 0
 <div class="progress"> <div class="progress-bar" style="width: 100%;"> </div> </div> </div> 
 
     <!-- footer -->
-    <small class="pull-right text-center"> git: git@github.com:etherparty/etherparty.io.git | PoC2 | copyright vanbexlabs 2014 <small>
+    <small class="col-xs-12 pull-right text-center"> git: git@github.com:etherparty/etherparty.io.git | PoC3 | copyright vanbexlabs 2014 <small>
     </div>
   </div>
-  <div class="col-xs-1"></div>
 </body>
 </html>

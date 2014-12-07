@@ -215,5 +215,19 @@ def checkgas():
 
     return output; 
 
+@app.route("/payload", methods=['POST'])
+def payload():
+   payload = request.form['payload'].encode('ascii',errors='ignore').decode('ascii')
+   try:
+        print([serpent_dir + 'serpent', 'encode_datalist', '"' + payload + '"' ])
+        hexdata = subprocess.check_output([serpent_dir + 'serpent', 'encode_datalist', payload ],stderr=subprocess.STDOUT).decode('utf-8')
+
+        output = "<h3> 0099 SUCCESS <br> PAYLOAD %s" % hexdata
+   except Exception as e:
+        print(e)
+        output = "<h3> 0098 ERR <br> REASON %s " % e
+
+   return output;
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=80, debug=False, use_reloader=True)
