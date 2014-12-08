@@ -40,21 +40,21 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Explorer<br><b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="#">Action</a>
+                  <a href="#">Find Contract</a>
                 </li>
                 <li>
-                  <a href="#">Another action</a>
+                  <a href="#">Documentation</a>
                 </li>
                 <li>
-                  <a href="#">Something else here</a>
+                  <a href="#">API</a>
                 </li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
+                <li class="dropdown-header">Support</li>
                 <li>
-                  <a href="#">Separated link</a>
+                  <a href="#">Release Notes</a>
                 </li>
                 <li>
-                  <a href="#">One more separated link</a>
+                  <a href="#">Wiki</a>
                 </li>
               </ul>
             </li>
