@@ -3,7 +3,7 @@
 <html>
   
   <head>
-    <title>etherparty</title>
+    <title>Jumbotron</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -27,14 +27,14 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li></li>
+            <li>
               <a href="#">Home</a>
             </li>
             <li>
               <a href="#about">About</a>
             </li>
             <li>
-              <a href="#contact">Contact Engine</a>
+              <a href="#contact">Contract Engine</a>
             </li>
             <li class="active" ="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Explorer<br><b class="caret"></b></a>
@@ -82,7 +82,7 @@
         </div>
         <p></p>
         <div class="form-group">
-          <label class="control-label">Find txid, address, or contract id</label>
+          <label class="control-label">Find by txid, address, or contract id</label>
           <div class="controls">
             <input type="text" class="form-control">
           </div>
@@ -92,71 +92,121 @@
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-md-4"></div>
         <div class="col-md-4">
-          <ul>
-            <li>Smart Contracts need fuel to run</li>
-            <li>Smart Contracts can be templates</li>
-            <li>Smart Contracts can be modified</li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group"></div>
+          <section>
+            <span class="label label-default">Executed Smart Contracts (confirmed)</span>
+          </section>
+          <section></section>
+          <span class="label label-default">Top 3 Most Executed:</span>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Top Smart Contracts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Sales and Escrow Agreement</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>DAC Structure</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>DAO Contract</td>
+              </tr>
+            </tbody>
+          </table>
+          <span class="label label-default">Contract Library</span>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label class="control-label">Fuel Amount:</label>
+            <label class="control-label">Estimate Fuel Cost for running Smart Contract:</label>
+            <span class="help-block">Fuel is calculated based on current exchange rates (up to 1 min delay).</span>
+            <div class="radio">
+              <label>
+                <input type="radio">XCP</label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio">BTC</label>
+            </div>
+            <label class="form-label">Select Contract:</label>
             <div class="controls">
-              <input type="text" class="form-control">
+              <select class="form-control">
+                <option>Namecoin Example</option>
+                <option>Crowdfund Example</option>
+                <option>Datafeed Example</option>
+              </select>
+              <label class="form-label"></label>
+            </div>
+            <a class="btn btn-primary">Calulcate</a>
+          </div>
+          <div class="form-group">
+            <div class="controls">
+              <div class="drag-mask" data-ds-form="text_field" style="width: 360px; height: 34px;"></div>
             </div>
           </div>
           <ul class="list-group"></ul>
-          <div class="form-group">
-            <label class="control-label">Contract ID</label>
-            <div class="controls">
-              <input type="text" class="form-control">
-            </div>
-          </div>
-          <a class="btn btn-primary">Gasoline Calulator</a>
+          <span class="label label-default">Smart Contract activity (in bytes):</span>
         </div>
         <div class="col-md-4">
-          <label class="form-label">Current Bounties:</label>
-          <ol>
-            <li>Winner #1</li>
-            <li>Winner #2</li>
-            <li>Winner #3</li>
-          </ol>
+          <label class="form-label">Try Smart Contracts:</label>
+          <select class="form-control">
+            <option>Namecoin Example</option>
+            <option>Crowdfund Example</option>
+            <option>Datafeed Example</option>
+          </select><br>
+          <label class="form-label">Charge to address:</label>
+          <input type="text" class="form-control">
+          <span class="help-block">Contracts need Fuel to prevent infinite loops!</span>
+          <div class="radio">
+            <label>
+              <input type="radio">XCP</label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio">BTC</label>
+          </div>
+          <a class="btn btn-primary">Run Smart Contract</a>
         </div>
       </div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Top Smart Contracts</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Sales and Escrow Agreement</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>DAC Structure</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="row">
+        <div class="col-md-4">
+          <section></section>
+        </div>
+        <div class="col-md-8">
+          <section></section>
+          <div class="drag-mask" data-ds-form="select" style="width: 750px; height: 34px;"></div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-lg-4">
+          <section>
+            <span class="label label-default">Published Smart Contracts (Unconfirmed)</span>
+          </section>
           <p></p>
+          <section></section>
         </div>
         <div class="col-lg-4">
-          <h2>Publish to the Blockchain</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-          <p><a class="btn btn-default" href="#">Try Smart Contracts &raquo;</a></p>
+          <label class="form-label">etherparty v1 release:</label>
+          <ol>
+            <li>December 31, 2014: PoC4</li>
+            <li>January 15, 2014: Execute</li>
+            <li>February 28, 2014: Create and Publish</li>
+          </ol>
         </div>
         <div class="col-lg-4">
-          <p><a class="btn btn-default" href="#">Run Smart Contracts &raquo;</a></p>
+          <label class="form-label">About Smart Contracts:</label>
+
+          <ul>
+            <li>Smart Contracts need fuel to run</li>
+            <li>Smart Contracts can be saved and re-used</li>
+            <li>Smart Contracts are encoded into the Bitcoin Blockchain</li>
+          </ul>
         </div>
       </div>
       <hr>
@@ -164,7 +214,6 @@
         <p>&copy; etherparty 2014</p>
       </footer>
     </div>
-    <!-- /container -->
   </body>
 
 </html>
