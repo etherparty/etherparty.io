@@ -171,6 +171,27 @@ def fetchcontractresult():
 
     return output; 
 
+@app.route("/contracts", methods=['GET'])
+def getcontracts():
+    try:
+      db = apsw.Connection(db_file)
+      cursor = db.cursor()
+      rows = list(cursor.execute('''SELECT tx_hash,source,contract_id,gas_price,gas_start,gas_cost,gas_remained,value,data,output,status FROM executions'''))
+
+      str_ = '<br> tx_hash | source | contract_id | gas_price | gas_start | gas_cost | gas_remained | value | data | output | status <br>'
+      for row in rows:
+        for item in row:
+          str_ += ' | ' + str(item)
+        str_ += '<br>'
+
+      cursor.close()
+      output = "<h4> CONTRACTS %s </h4>" % str_
+    except Exception as e:
+      print(e)
+      output = "<h3> 0098 ERR <br> REASON %s " % e
+
+    return output; 
+
 @app.route("/getaddress", methods=['POST'])
 def getaddress():
     try:
