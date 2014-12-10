@@ -34,14 +34,14 @@
   <h5 class="well well-md text-center">
   <textarea type="text" name="contract" class="form-control" rows="10">
 // Sample contract - Namecoin
+def register(k, v):
+    if !self.storage[k]: # Is the key not yet taken?
+        # Then take it!
+        self.storage[k] = v
+        return(1)
+    else:
+        return(0) // Otherwise do nothing
 
-if !contract.storage[msg.data[0]]: # Is the key not yet taken?
-  # Then take it!
-  contract.storage[msg.data[0]] = msg.data[1]
-  return(1)
-else:
-
-  return(0) // Otherwise do nothing
   </textarea>
   <br>
          <input type="submit" class="btn btn-lg btn-danger" value="Create Contract" />  
@@ -56,30 +56,34 @@ else:
   <div class="row">
     <div class="col-xs-3"> Moduluo Fun
     <textarea class="form-control" rows="8">
-x = msg.data[0]
-steps = 0
+def moduloFun(x):
+    xmod2 = x % 2
+    steps = 0
 
-while x > 1:
-    steps += 1
-    if (x % 2) == 0:
-        x /= 2
-    else:
-        x = 3 * x + 1
+    while x > 1:
+        steps += 1
+        if xmod2 == 0:
+            x /= 2
+        else:
+            x = 3 * x + 1
 
-return(steps)
+    return(steps)
     </textarea>
     </div>
 
     <div class="col-xs-6"> Simple blockchain storage
     <textarea class="form-control" rows="8">
-if not contract.storage[msg.data[0]]:
-    contract.storage[msg.data[0]] = msg.data[1]
+def register(k, v):
+    if !self.storage[k]:
+        self.storage[k] = v
+
     </textarea>
     </div>
 
     <div class="col-xs-3"> Multiply by 6
     <textarea class="form-control" rows="8">
-return(msg.data[0]*6)  
+def multiply6(v):
+    return(v*6)
     </textarea>
     </div>
 
@@ -89,29 +93,32 @@ return(msg.data[0]*6)
     <div class="col-xs-6">  Datafeed
     <textarea class="form-control" rows="8">
 # Database updateable only by the original creator
-init:
-    contract.storage[1000] = msg.sender
-code:
-    // Message of the form [key, value] updates the database
-    if msg.sender == contract.storage[1000] and msg.datasize == 2:
-        contract.storage[msg.data[0]] = msg.data[1]
-    // Database query
-    else:
-        return(contract.storage[msg.data[0]])
+data creator
+
+def init():
+    self.creator = msg.sender
+
+def update(k, v):
+    if msg.sender == self.creator:
+        self.storage[k] = v
+
+def query(k):
+    return(self.storage[k])
+
     </textarea>
     </div>
 
     <div class="col-xs-6"> Namecoin
     <textarea class="form-control" rows="8">
 // Namecoin
+def register(k, v):
+    if !self.storage[k]: # Is the key not yet taken?
+        # Then take it!
+        self.storage[k] = v
+        return(1)
+    else:
+        return(0) // Otherwise do nothing
 
-if !contract.storage[msg.data[0]]: # Is the key not yet taken?
-    # Then take it!
-    contract.storage[msg.data[0]] = msg.data[1]
-    return(1)
-else:
-
-    return(0) // Otherwise do nothing
     </textarea>
     </div>
 
@@ -119,68 +126,60 @@ else:
     <div class="row">
     <div class="col-xs-12"> Crowdfunder
     <textarea class="form-control" rows="8">
-# storage[-1] = last campaign id
-# campaigns:
-#      id: creator
-#    id+1: goal
-#    id+2: end timestamp
-#    id+3: pointer to place next donation
-#    id+4: total contribution counter
-# id+2i+5: ith contributor
-# id+2i+6: ith contribution
+data campaigns[2^80](recipient, goal, deadline, contrib_total, contrib_count, contribs[2^50](sender, value))
 
-# Start a campaign, data [0, id, recipient, goal, time limit]
-if msg.data[0] == 0:
-    id = msg.data[1] * 2 ^ 128
-    if contract.storage[id]:
+def create_campaign(id, recipient, goal, timelimit):
+    if self.campaigns[id].recipient:
         return(0)
-    contract.storage[id] = msg.data[2] # Campaign recipient
-    contract.storage[id + 1] = msg.data[3] # Goal
-    contract.storage[id + 2] = block.timestamp + msg.data[4] # Time limit
-    contract.storage[id + 3] = id + 5 # Index of next contribution
-    return(msg.data[1])
+    self.campaigns[id].recipient = recipient
+    self.campaigns[id].goal = goal
+    self.campaigns[id].deadline = block.timestamp + timelimit
 
-# Contribute to a campaign [1, id]
-elif msg.data[0] == 1:
-    id = msg.data[1] * 2^128
-
+def contribute(id):
     # Update contribution total
-    total_contributed = contract.storage[id + 4] + msg.value
-    contract.storage[id + 4] = total_contributed
+    total_contributed = self.campaigns[id].contrib_total + msg.value
+    self.campaigns[id].contrib_total = total_contributed
 
     # Record new contribution
-    sub_index = contract.storage[id + 3]
-    contract.storage[sub_index] = msg.sender
-    contract.storage[sub_index + 1] = msg.value
-    contract.storage[id + 3] = sub_index + 2
+    sub_index = self.campaigns[id].contrib_count
+    self.campaigns[id].contribs[sub_index].sender = msg.sender
+    self.campaigns[id].contribs[sub_index].value = msg.value
+    self.campaigns[id].contrib_count = sub_index + 1
 
     # Enough funding?
-    if total_contributed >= contract.storage[id + 1]:
-        send(contract.storage[id], total_contributed)
-        v = id
-        f = sub_index + 2
-        while v < f:
-            contract.storage[v] = 0
-            v += 1
+    if total_contributed >= self.campaigns[id].goal:
+        send(self.campaigns[id].recipient, total_contributed)
+        self.clear(id)
         return(1)
 
     # Expired?
-    if block.timestamp > contract.storage[id + 2]:
-        v = id
-        f = sub_index + 2
-        while v < id + 5:
-            contract.storage[v] = 0
-            v += 1
-        while v < f:
-            send(contract.storage[v], contract.storage[v + 1])
-            contract.storage[v] = 0
-            contract.storage[v + 1] = 0
-            v += 2
+    if block.timestamp > self.campaigns[id].deadline:
+        i = 0
+        c = self.campaigns[id].contrib_count
+        while i < c:
+            send(self.campaigns[id].contribs[i].sender, self.campaigns[id].contribs[i].value)
+            i += 1
+        self.clear(id)
         return(2)
 
-# Progress report [2, id]
-elif msg.data[0] == 2:
-    return(contract.storage[msg.data[1] * 2^128] + 4)
+def progress_report(id):
+    return(self.campaigns[id].contrib_total)
+
+# Clearing function for internal use
+def clear(id):
+    if self == msg.sender:
+        self.campaigns[id].recipient = 0
+        self.campaigns[id].goal = 0
+        self.campaigns[id].deadline = 0
+        c = self.campaigns[id].contrib_count
+        self.campaigns[id].contrib_count = 0
+        self.campaigns[id].contrib_total = 0
+        i = 0
+        while i < c:
+            self.campaigns[id].contribs[i].sender = 0
+            self.campaigns[id].contribs[i].value = 0
+            i += 1
+
     </textarea>
     </div>
 
@@ -188,7 +187,7 @@ elif msg.data[0] == 2:
 </div>
 
     </b>
-<div class="well well-md text-center"> View more examples at: <a href="https://github.com/ethereum/serpent/tree/master/examples">https://github.com/ethereum/serpent/tree/master/examples</a> </div> 
+<div class="well well-md text-center"> Serpent branch running: -poc7. View more examples at: <a href="https://github.com/ethereum/serpent/tree/master/examples">https://github.com/ethereum/serpent/tree/master/examples</a> </div> 
 
   <div class="col-xs-1"> </div>
 

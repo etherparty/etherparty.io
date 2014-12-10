@@ -1,1 +1,219 @@
-nothing here yet!
+<!doctype html>
+
+<html>
+  
+  <head>
+    <title>etherparty</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><b>etherparty</b></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="#">Home</a>
+            </li>
+            <li>
+              <a href="#about">About</a>
+            </li>
+            <li>
+              <a href="#contact">Contract Engine</a>
+            </li>
+            <li class="active" ="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Explorer<br><b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#">Find Contract</a>
+                </li>
+                <li>
+                  <a href="#">API</a>
+                </li>
+                <li>
+                  <a href="#">Wiki</a>
+                </li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Resources</li>
+                <li>
+                  <a href="#">Documentation</a>
+                </li>
+                <li>
+                  <a href="#">Release Notes</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <div class="form-group"></div>
+            <span class="badge">&nbsp;XCP / BTC: &nbsp;</span>
+            <div class="form-group">
+              <span class="badge">Current Fuel Price: 2 XCP</span>
+            </div>
+          </form>
+        </div>
+        <!--/.navbar-collapse -->
+      </div>
+    </div>
+    <div class="jumbotron">
+      <div class="container">
+        <div class="media">
+          <a class="pull-left" href="#">      </a>
+          <div class="media-body">
+            <h1>Explore Etherparty</h1>
+            <h4 class="media-heading">Smart Contract Explorer</h4>
+            <p style><span style="color: rgb(0, 0, 0); font-family: Arial, Helvetica, sans; font-size: 11px; line-height: 14px; text-align: justify;">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lore</span></p>
+          </div>
+        </div>
+        <p></p>
+        <div class="form-group">
+          <label class="control-label">Find by txid, address, or contract id</label>
+          <div class="controls">
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <a class="btn btn-primary">Search</a>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <section>
+            <span class="label label-default">Executed Smart Contracts (confirmed)</span>
+          </section>
+          <section></section>
+          <span class="label label-default">Top 3 Most Executed:</span>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Top Smart Contracts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Sales and Escrow Agreement</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>DAC Structure</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>DAO Contract</td>
+              </tr>
+            </tbody>
+          </table>
+          <span class="label label-default">Contract Library</span>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Estimate Fuel Cost for running Smart Contract:</label>
+            <span class="help-block">Fuel is calculated based on current exchange rates (up to 1 min delay).</span>
+            <div class="radio">
+              <label>
+                <input type="radio">XCP</label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio">BTC</label>
+            </div>
+            <label class="form-label">Select Contract:</label>
+            <div class="controls">
+              <select class="form-control">
+                <option>Namecoin Example</option>
+                <option>Crowdfund Example</option>
+                <option>Datafeed Example</option>
+              </select>
+              <label class="form-label"></label>
+            </div>
+            <a class="btn btn-primary">Calulcate</a>
+          </div>
+          <div class="form-group">
+            <div class="controls">
+              <div class="drag-mask" data-ds-form="text_field" style="width: 360px; height: 34px;"></div>
+            </div>
+          </div>
+          <ul class="list-group"></ul>
+          <span class="label label-default">Smart Contract activity (in bytes):</span>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Try Smart Contracts:</label>
+          <select class="form-control">
+            <option>Namecoin Example</option>
+            <option>Crowdfund Example</option>
+            <option>Datafeed Example</option>
+          </select><br>
+          <label class="form-label">Charge to address:</label>
+          <input type="text" class="form-control">
+          <span class="help-block">Contracts need Fuel to prevent infinite loops!</span>
+          <div class="radio">
+            <label>
+              <input type="radio">XCP</label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio">BTC</label>
+          </div>
+          <a class="btn btn-primary">Run Smart Contract</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <section></section>
+        </div>
+        <div class="col-md-8">
+          <section></section>
+          <div class="drag-mask" data-ds-form="select" style="width: 750px; height: 34px;"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <section>
+            <span class="label label-default">Published Smart Contracts (Unconfirmed)</span>
+          </section>
+          <p></p>
+          <section></section>
+        </div>
+        <div class="col-lg-4">
+          <label class="form-label">etherparty v1 release:</label>
+          <ol>
+            <li>December 31, 2014: PoC4</li>
+            <li>January 15, 2014: Execute</li>
+            <li>February 28, 2014: Create and Publish</li>
+          </ol>
+        </div>
+        <div class="col-lg-4">
+          <label class="form-label">About Smart Contracts:</label>
+
+          <ul>
+            <li>Smart Contracts need fuel to run</li>
+            <li>Smart Contracts can be saved and re-used</li>
+            <li>Smart Contracts are encoded into the Bitcoin Blockchain</li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <footer>
+        <p>&copy; etherparty 2014</p>
+      </footer>
+    </div>
+  </body>
+
+</html>
