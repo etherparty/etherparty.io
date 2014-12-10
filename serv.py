@@ -54,8 +54,8 @@ def compile_contract():
         print(hexdata)
         output = "<h3> 0099 SUCCESS <br> CONTRACT %s <br> " % hexdata
    except Exception as e:
-        print(e)
-        output = "<h3> 0098 ERR <br> REASON %s " % e.output
+        print(e, e.output)
+        output = "<h3> 0098 ERR <br> CODE %s <br> REASON Try checking your balance, making sure your address is valid, and your input values are correctly formatted " % e.returncode
 
    return output;
 
@@ -103,9 +103,9 @@ def publish():
          #output = "<h3> 0099 SUCCESS <br> UNSIGNED %s <br> SIGNED %s <br> TXID %s <br> " % (hexdata[0],hexdata[1], hexdata[2])
          output = "<h3> 0099 SUCCESS <br> TXID %s <br> NOTE You will need to wait a few minutes for the transaction to confirm, before you attempt to retreive the contract ID" % hexdata[2]
     except Exception as e:
-      print(e)
+      print(e, e.output)
       #if 'output' in e:
-      output = "<h3> 0098 ERR <br> REASON %s " % e.output
+      output = "<h3> 0098 ERR <br> CODE %s <br> REASON Try checking your balance, making sure your address is valid, and your input values are correctly formatted " % e.returncode
       #else: output = e
 
     return output; 
@@ -123,9 +123,9 @@ def execute():
          print(hexdata)
          output = "<h3> 0099 SUCCESS <br> TXID %s <br> " % hexdata[2]
     except Exception as e:
-      print(e)
+      print(e, e.output)
       #if 'output' in e:
-      output = "<h3> 0098 ERR <br> REASON %s " % e.output
+      output = "<h3> 0098 ERR <br> CODE %s <br> REASON Try checking your balance, making sure your address is valid, and your input values are correctly formatted " % e.returncode
       #else: output = e
 
     return output; 
@@ -208,9 +208,9 @@ def checkgas():
       
       output = "<h3> 0102 GASCHECK <br> ADDRESS %s <br> QUANTITY %s </h3>" % (address, (hexdata[ hexdata.find('XCP'): ]).split('|')[1].replace('.','')) 
     except Exception as e:
-      print(e)
+      print(e, e.output)
       #if 'output' in e:
-      output = "<h3> 0098 ERR <br> REASON %s " % e.output
+      output = "<h3> 0098 ERR <br> CODE %s <br> REASON Try checking your balance, making sure your address is valid, and your input values are correctly formatted " % e.returncode
       #else: output = e
 
     return output; 
