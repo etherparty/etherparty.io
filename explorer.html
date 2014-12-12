@@ -36,7 +36,7 @@
             <li>
               <a href="#contact">Contract Engine</a>
             </li>
-            <li class="active" ="dropdown">
+            <li class="active"="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Explorer<br><b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
@@ -72,37 +72,83 @@
     </div>
     <div class="jumbotron">
       <div class="container">
-        <div class="media">
-          <a class="pull-left" href="#">      </a>
-          <div class="media-body">
-            <h1>Explore Etherparty</h1>
-            <h4 class="media-heading">Smart Contract Explorer</h4>
-            <p style><span style="color: rgb(0, 0, 0); font-family: Arial, Helvetica, sans; font-size: 11px; line-height: 14px; text-align: justify;">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lore</span></p>
-          </div>
-        </div>
-        <p></p>
+        <h1>Explore Etherparty</h1>
+        <h4 class="media-heading">Smart Contracts on the Bitcoin Blockchain</h4>
+        <p style><span style="color: rgb(0, 0, 0); font-family: Arial, Helvetica, sans; font-size: 11px; line-height: 14px; text-align: justify;">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lore</span></p><br>
         <div class="form-group">
-          <label class="control-label">Find by txid, address, or contract id</label>
           <div class="controls">
-            <input type="text" class="form-control">
+            <label class="control-label">Sign up for the Beta Release!</label>
+            <input type="email" class="form-control">
+            <br>
+            <a class="btn btn-primary">Register</a>
+          </div>
+        </div><br>
+        <div class="col-md-4">
+          <label class="form-label">etherparty v1 release:</label>
+          <ol>
+            <li>December 31, 2014: PoC4</li>
+            <li>January 15, 2014: Execute Alpha</li>
+            <li>February 28, 2014: Create and Publish</li>
+          </ol>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">What is etherparty?</label>
+          <ul>
+            <li>The front-end for executing Smart Contracts on the Blockchain</li>
+            <li>Create and publish your own Smart Contracts</li>
+            <li>Platform for building DACS, DApps, DAOs, and DGames</li>
+          </ul>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label class="form-label">About Smart Contracts:</label>
+            <ul>
+              <li>Smart Contracts need fuel to run</li>
+              <li>Smart Contracts can be saved and re-used</li>
+              <li>Smart Contracts are encoded into the Bitcoin Blockchain</li>
+            </ul>
           </div>
         </div>
-        <a class="btn btn-primary">Search</a>
-      </div>
+        <div class="form-group"></div>
+        <div class="row"></div>
+      </div><br></div>
+    <p></p>
+    <div class="form-group">
+      <div class="controls"></div>
     </div>
     <div class="container">
       <div class="row">
         <div class="col-md-4">
           <section>
-            <span class="label label-default">Executed Smart Contracts (confirmed)</span>
+            <span class="label label-default">Powerball Game</span><br>
+            <label class="form-label">Play Smart Contract Powerball!</label><br>
+            <span class="help-block" style>Bitcoin-style Powerball Lottery on the Blockchain, play game below:</span>
           </section>
-          <section></section>
-          <span class="label label-default">Top 3 Most Executed:</span>
+          <div class="form-group">
+            <label class="control-label">How much do you want to bet? (XCP)</label>
+            <input type="number" class="form-control">
+            <label class="form-label">How many numbers to play?</label>
+            <select class="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <label class="form-label">Choose your 5 numbers (between 1 - 100):</label>
+            <input type="numbers" class="form-control">
+            <label class="form-label">BTC Address (to pay):</label>
+            <input type="text" class="form-control">
+            <span class="help-block"><b>Please note: fuel price to play is 2 XCP and will be included when you press Play below:</b></span><a class="btn btn-primary">Play Powerball!</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <span class="label label-default">On the Roadmap</span><span class="help-block">We are planning the following Smart Contracts as part of our upcoming release:</span>
           <table class="table">
             <thead>
               <tr>
                 <th>#</th>
-                <th>Top Smart Contracts</th>
+                <th>On The List:</th>
               </tr>
             </thead>
             <tbody>
@@ -120,99 +166,46 @@
               </tr>
             </tbody>
           </table>
-          <span class="label label-default">Contract Library</span>
-        </div>
+          <label class="form-label">What Smart Contracts do YOU want next?</label>
+          <span class="help-block">Please let us know what Smart Contracts you want to see next on etherparty!</span><input type="text" class="form-control">
+          <br>
+          <a class="btn btn-primary">Send</a><br></div>
         <div class="col-md-4">
-          <div class="form-group">
-            <label class="control-label">Estimate Fuel Cost for running Smart Contract:</label>
-            <span class="help-block">Fuel is calculated based on current exchange rates (up to 1 min delay).</span>
-            <div class="radio">
-              <label>
-                <input type="radio">XCP</label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio">BTC</label>
-            </div>
-            <label class="form-label">Select Contract:</label>
-            <div class="controls">
-              <select class="form-control">
-                <option>Namecoin Example</option>
-                <option>Crowdfund Example</option>
-                <option>Datafeed Example</option>
-              </select>
-              <label class="form-label"></label>
-            </div>
-            <a class="btn btn-primary">Calulcate</a>
-          </div>
-          <div class="form-group">
-            <div class="controls">
-              <div class="drag-mask" data-ds-form="text_field" style="width: 360px; height: 34px;"></div>
-            </div>
-          </div>
-          <ul class="list-group"></ul>
-          <span class="label label-default">Smart Contract activity (in bytes):</span>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Try Smart Contracts:</label>
+          <span class="label label-default">Execute Smart Contracts</span><br>
+          <span class="help-block">Choose from our list of pre-configured Smart Contracts, provide your parameters, and etherparty will do the rest!</span>
+          <label class="form-label">Select Program:</label>
           <select class="form-control">
-            <option>Namecoin Example</option>
-            <option>Crowdfund Example</option>
-            <option>Datafeed Example</option>
+            <option>Reddit Keyword Hunter</option>
+            <option>Bitcointalk Mentions</option>
+            <option>Bitcoin Address</option>
           </select><br>
-          <label class="form-label">Charge to address:</label>
-          <input type="text" class="form-control">
-          <span class="help-block">Contracts need Fuel to prevent infinite loops!</span>
-          <div class="radio">
-            <label>
-              <input type="radio">XCP</label>
+          <div class="form-group">
+            <label class="control-label">Provide Keyword or Address:</label>
+            <div class="controls">
+              <input type="text" class="form-control"><br>
+            </div>
+            <label class="form-label">BTC Address (will be charged for Fuel):</label>
+            <input type="text" class="form-control">
+            <span class="help-block">(Contracts need Fuel to prevent infinite loops!)</span><span class="help-block"><b>Please note: Price of 3 XCP is required to execute.</b></span><a class="btn btn-primary">Run</a>
           </div>
-          <div class="radio">
-            <label>
-              <input type="radio">BTC</label>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="drag-mask" data-ds-form="select" style="width: 750px; height: 34px;"></div>
           </div>
-          <a class="btn btn-primary">Run Smart Contract</a>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <br>
+            <div class="row"></div>
+            <hr>
+            <footer>
+              <p>&copy; etherparty 2014</p>
+            </footer>
+            <!-- /container -->
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-4">
-          <section></section>
-        </div>
-        <div class="col-md-8">
-          <section></section>
-          <div class="drag-mask" data-ds-form="select" style="width: 750px; height: 34px;"></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4">
-          <section>
-            <span class="label label-default">Published Smart Contracts (Unconfirmed)</span>
-          </section>
-          <p></p>
-          <section></section>
-        </div>
-        <div class="col-lg-4">
-          <label class="form-label">etherparty v1 release:</label>
-          <ol>
-            <li>December 31, 2014: PoC4</li>
-            <li>January 15, 2014: Execute</li>
-            <li>February 28, 2014: Create and Publish</li>
-          </ol>
-        </div>
-        <div class="col-lg-4">
-          <label class="form-label">About Smart Contracts:</label>
-
-          <ul>
-            <li>Smart Contracts need fuel to run</li>
-            <li>Smart Contracts can be saved and re-used</li>
-            <li>Smart Contracts are encoded into the Bitcoin Blockchain</li>
-          </ul>
-        </div>
-      </div>
-      <hr>
-      <footer>
-        <p>&copy; etherparty 2014</p>
-      </footer>
     </div>
   </body>
 
