@@ -124,22 +124,44 @@
             <label class="form-label">Play Smart Contract Powerball!</label><br>
             <span class="help-block" style>Bitcoin-style Powerball Lottery on the Blockchain, play game below:</span>
           </section>
+             <div class="container">
+            
+            <div class="row">
+             
+<form method="POST">
+     <div id="dynamicInput"><b>Numbers to play: </b><input type="text" name="myInputs[]" size="2">
+     
+      <input type="button" value="+" onClick="addInput('dynamicInput');"></div>
+</form>
+<script>
+var counter = 1;
+var limit = 7;
+function addInput(divName){
+     if (counter == limit)  {
+          alert("You have reached the limit of adding " + counter + " inputs");
+     }
+     else {
+          var newdiv = document.createElement('div');
+          newdiv.innerHTML = "Entry " + (counter + 1) + "<div class="row"> <input type='text' name='myInputs[]'>";
+          document.getElementById(divName).appendChild(newdiv);
+          counter++;
+     }
+}</div></script>
+
+            </div>
+          </div>
           <div class="form-group">
-            <label class="control-label">How much do you want to bet? (XCP)</label>
-            <input type="number" class="form-control">
-            <label class="form-label">How many numbers to play?</label>
-            <select class="form-control">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-            <label class="form-label">Choose your 5 numbers (between 1 - 100):</label>
-            <input type="numbers" class="form-control">
+            <div class="container">
+              <div class="row">
+               
+                <div class="control-group" id="fields">
+                  <div class="controls" id="profs"></div>
+                </div>
+              </div>
+            </div>
             <label class="form-label">BTC Address (to pay):</label>
             <input type="text" class="form-control">
-            <span class="help-block"><b>Please note: fuel price to play is 2 XCP and will be included when you press Play below:</b></span><a class="btn btn-primary">Play Powerball!</a>
+            <span class="help-block"><b>Please note: fuel price to play is 3 XCP and will be included when you press Play below:</b></span><a class="btn btn-primary">Play Powerball!</a>
           </div>
         </div>
         <div class="col-md-4">
