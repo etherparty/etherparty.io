@@ -13,7 +13,9 @@
         padding-top: 50px;
         padding-bottom: 20px;
       }
+      
     </style>
+   
   </head>
   
   <body>
@@ -109,9 +111,7 @@
             </ul>
           </div>
         </div>
-        <div class="form-group"></div>
-        <div class="row"></div>
-      </div><br></div>
+      </div></div>
     <p></p>
     <div class="form-group">
       <div class="controls"></div>
@@ -124,16 +124,18 @@
             <label class="form-label">Play Smart Contract Powerball!</label><br>
             <span class="help-block" style>Bitcoin-style Powerball Lottery on the Blockchain, play game below:</span>
           </section>
-             <div class="container">
+          
+          <div class="container">
             
             <div class="row">
-             
+            <div>
+            
 <form method="POST">
-     <div id="dynamicInput"><b>Numbers to play: </b><input type="text" style="width:20px;" name="myInputs[]" size="5">
+     <div id="dynamicInput"><b>Numbers to play: </b><br><input type="text" style="width:20px;" name="myInputs[]" size="5">
      
-      <input type="button" value="+" onClick="addInput('dynamicInput');"></div>
+     <input type="button" value="+" onClick="addInput('dynamicInput');">
 </form>
-<script>
+<script> 
 var counter = 1;
 var limit = 7;
 function addInput(divName){
@@ -142,13 +144,18 @@ function addInput(divName){
      }
      else {
           var newdiv = document.createElement('div');
-         newdiv.innerHTML = "Pick " + (counter + 1) + "<input type='text' style='width:20px;'name='myInputs[]'>";
+          
+          newdiv.innerHTML = "Pick " + (counter + 1) + "<input type='text' style='width:20px;'name='myInputs[]'>";
+          
           document.getElementById(divName).appendChild(newdiv);
-           newdiv.style.display = "inline-block";
-         
+         newdiv.style.display = "inline-block";
+
           counter++;
+          
      }
-}</script>
+}
+  
+</script>
             </div>
           </div></div></div>
           <div class="form-group">
@@ -198,8 +205,8 @@ function addInput(divName){
           <div class="form-group">
             <label class="control-label">Provide Keyword or Address:</label>
             <div class="controls">
-              <input type="text" class="form-control"><br>
-            </div>
+              <input type="text" class="form-control">
+              <br></div>
             <label class="form-label">BTC Address (will be charged for Fuel):</label>
             <input type="text" class="form-control">
             <span class="help-block">(Contracts need Fuel to prevent infinite loops!)</span><span class="help-block"><b>Please note: Price of 3 XCP is required to execute.</b></span><a class="btn btn-primary">Run</a>
