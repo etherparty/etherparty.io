@@ -144,21 +144,15 @@ function addInput(divName){
           var newdiv = document.createElement('div');
           newdiv.innerHTML = "Entry " + (counter + 1) + "<input type='text' name='myInputs[]'>";
           document.getElementById(divName).appendChild(newdiv);
+           newdiv.style.display = "inline-block";
+         
           counter++;
      }
 }</script>
-
             </div>
-          </div>
+          </div></div></div>
           <div class="form-group">
-            <div class="container">
-              <div class="row">
-               
-                <div class="control-group" id="fields">
-                  <div class="controls" id="profs"></div>
-                </div>
-              </div>
-            </div>
+            
             <label class="form-label">BTC Address (to pay):</label>
             <input type="text" class="form-control">
             <span class="help-block"><b>Please note: fuel price to play is 3 XCP and will be included when you press Play below:</b></span><a class="btn btn-primary">Play Powerball!</a>
