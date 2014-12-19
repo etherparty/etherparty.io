@@ -129,7 +129,7 @@
             <div class="row">
              
 <form method="POST">
-     <div id="dynamicInput"><b>Numbers to play: </b><input type="text" name="myInputs[]" size="2">
+     <div id="dynamicInput"><b>Numbers to play: </b><input type="text" style="width:20px;" name="myInputs[]" size="5">
      
       <input type="button" value="+" onClick="addInput('dynamicInput');"></div>
 </form>
@@ -142,7 +142,7 @@ function addInput(divName){
      }
      else {
           var newdiv = document.createElement('div');
-          newdiv.innerHTML = "Entry " + (counter + 1) + "<input type='text' name='myInputs[]'>";
+         newdiv.innerHTML = "Pick " + (counter + 1) + "<input type='text' style='width:20px;'name='myInputs[]'>";
           document.getElementById(divName).appendChild(newdiv);
            newdiv.style.display = "inline-block";
          
