@@ -139,12 +139,12 @@ var counter = 1;
 var limit = 7;
 function addInput(divName){
      if (counter == limit)  {
-          alert("You have reached the limit of adding " + counter + " inputs");
+          alert("7 numbers is the limit");
      }
      else {
           var newdiv = document.createElement('div');
           
-          newdiv.innerHTML = "Pick " + (counter + 1) + "<input type='text' style='width:20px;'name='myInputs[]'>";
+          newdiv.innerHTML = "# " + (counter) + "<input type='text' style='width:20px;'name='myInputs[]'>";
           
           document.getElementById(divName).appendChild(newdiv);
          newdiv.style.display = "inline-block";
