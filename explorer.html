@@ -13,9 +13,7 @@
         padding-top: 50px;
         padding-bottom: 20px;
       }
-      
     </style>
-   
   </head>
   
   <body>
@@ -29,8 +27,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li>
-              <a href="#">Home</a>
+            <li class="active">
+              <a href="index.html">Home</a>
             </li>
             <li>
               <a href="#about">About</a>
@@ -38,7 +36,7 @@
             <li>
               <a href="#contact">Contract Engine</a>
             </li>
-            <li class="active"="dropdown">
+            <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Explorer<br><b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
@@ -111,7 +109,8 @@
             </ul>
           </div>
         </div>
-      </div></div>
+      </div>
+    </div>
     <p></p>
     <div class="form-group">
       <div class="controls"></div>
@@ -124,87 +123,89 @@
             <label class="form-label">Play Smart Contract Powerball!</label><br>
             <span class="help-block" style>Bitcoin-style Powerball Lottery on the Blockchain, play game below:</span>
           </section>
-          
           <div class="container">
-            
             <div class="row">
-            <div>
-            
-<form method="POST">
-     <div id="dynamicInput">
-     <div type="container"><button onClick="addInput('dynamicInput');">Pick Numbers:</button><br><br> <div type="newdiv"><input="text" min="1" max="100" placeholder="#1" style="width:20px;" name="myInputs[]" size="5"></div></div>
-</form>
-<script> 
-var counter = 1;
-var limit = 8;
-function addInput(divName){
-     if (counter == limit)  {
-          alert("7 numbers is the limit");
-     }
-     else {
-          var newdiv = document.createElement('div');
-          
-          newdiv.innerHTML = "# " + (counter) + "<input type='text' style='width:20px;'name='myInputs[]'>";
-          
-          document.getElementById(divName).appendChild(newdiv);
-         newdiv.style.display = "inline-block";
+              <form method="POST">
+                <div id="dynamicInput">
+                  <div type="container">
+                    <button onclick="addInput('dynamicInput');" type="button" data-toggle="tooltip" data-placement="left" title="Tooltip on left">Pick Numbers:</button><br><br>
+                    <div type="newdiv">
+                      <input="text" style="width:20px;" name="myInputs[]" size="5"></input="text">
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <script>
+                var counter = 1;
+                var limit = 8;
 
-          counter++;
-          
-     }
-}
-  
-</script>
+                function addInput(divName) {
+                  if (counter == limit) {
+                    alert("7 numbers is the limit");
+                  } else {
+                    var newdiv = document.createElement('div');
+                    newdiv.innerHTML = "# " + (counter) + "<br><input type='text' style='width:20px;' name='myInputs[]'>";
+                    document.getElementById(divName).appendChild(newdiv);
+                    newdiv.style.display = "inline-block";
+                    counter++;
+                  }
+                }
+              </script>
             </div>
-          </div></div></div>
+          </div><br>
           <div class="form-group">
-            
             <label class="form-label">BTC Address (to pay):</label>
             <input type="text" class="form-control">
             <span class="help-block"><b>Please note: fuel price to play is 3 XCP and will be included when you press Play below:</b></span><a class="btn btn-primary">Play Powerball!</a>
           </div>
         </div>
         <div class="col-md-4">
-          <span class="label label-default">On the Roadmap</span><span class="help-block">We are planning the following Smart Contracts as part of our upcoming release:</span>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>On The List:</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Sales and Escrow Agreement</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>DAC Structure</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>DAO Contract</td>
-              </tr>
-            </tbody>
-          </table>
-          <label class="form-label">What Smart Contracts do YOU want next?</label>
-          <span class="help-block">Please let us know what Smart Contracts you want to see next on etherparty!</span><input type="text" class="form-control">
-          <br>
-          <a class="btn btn-primary">Send</a><br></div>
-        <div class="col-md-4">
-          <span class="label label-default">Execute Smart Contracts</span><br>
-          <span class="help-block">Choose from our list of pre-configured Smart Contracts, provide your parameters, and etherparty will do the rest!</span>
-          <label class="form-label">Select Program:</label>
-          <select class="form-control">
-            <option>Reddit Keyword Hunter</option>
-            <option>Bitcointalk Mentions</option>
-            <option>Bitcoin Address</option>
-          </select><br>
+          <span class="label label-default">Contract Template</span><br>
+          <b>Smart Sales Contract DAC</b><span class="help-block">Smart Sales Contracts are fulfillment programs that dispense invoices, manage inventory, and collect payments. </span>
           <div class="form-group">
-            <label class="control-label">Provide Keyword or Address:</label>
+            <label class="control-label">DAC Address: (To Receive Payments)</label>
             <div class="controls">
               <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="true">Create new payment address per transaction</label>
+          </div>
+          <label class="form-label">After payment is sent, funds are held until:</label>
+          <div class="radio">
+            <label>
+              <input type="radio">Buyer confirms</label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio">Seller confirms</label>
+          </div>
+          <label class="form-label">Contract Logic:</label>
+          <input type="text" placeholder="Sell 1000 Beanie Babies for $500 each" class="form-control">
+          <label class="form-label">Contract Runs:</label>
+          <select class="form-control">
+            <option>Until sold out</option>
+            <option>Until Expiration Date</option>
+            <option>Until fuel is empty</option>
+          </select>
+          <label class="form-label">Expiration Date:</label>
+          <input type="text" placeholder="mm/dd/yy" class="form-control">
+          <span class="help-block">Fuel is required to run the contract. This program will collect 3% of payments, calculated in USD per transaction performed. </span><br>
+          <a class="btn btn-primary">Send</a><br></div><br>
+        <div class="col-md-4">
+          <span class="label label-default">Execute Smart Contracts</span><br>
+          <span class="help-block">Run these Templates and create a custom Smart Contract result. </span>
+          <label class="form-label">Select Program:</label>
+          <select class="form-control">
+            <option>Check Powerball Lotto numbers</option>
+            <option>Send Fuel to contract</option>
+            <option>Check Contract Status</option>
+          </select><br>
+          <div class="form-group">
+            <label class="control-label">Provide Unique Identifier:</label>
+            <div class="controls">
+              <input type="text" placeholder="searh keyword or name or numbers" class="form-control">
               <br></div>
             <label class="form-label">BTC Address (will be charged for Fuel):</label>
             <input type="text" class="form-control">
