@@ -131,9 +131,8 @@
             <div>
             
 <form method="POST">
-     <div id="dynamicInput"><b>Numbers to play: </b><br><input type="text" style="width:20px;" name="myInputs[]" size="5">
-     
-     <input type="button" value="+" onClick="addInput('dynamicInput');">
+     <div id="dynamicInput">
+     <div type="container"><button onClick="addInput('dynamicInput');">Pick Numbers:</button><br><br> <div type="newdiv"><input="text" min="1" max="100" placeholder="#1" style="width:20px;" name="myInputs[]" size="5"></div></div>
 </form>
 <script> 
 var counter = 1;
