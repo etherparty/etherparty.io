@@ -135,7 +135,7 @@
                   </div>
                 </div>
               </form>
-              <script>
+                    <script>
                 var counter = 1;
                 var limit = 8;
 
@@ -144,7 +144,7 @@
                     alert("7 numbers is the limit");
                   } else {
                     var newdiv = document.createElement('div');
-                    newdiv.innerHTML = "# " + (counter) + "<br><input type='text' style='width:20px;' name='myInputs[]'>";
+                    newdiv.innerHTML = "# " + (counter) + "  <br> <input type='text' style='width:20px;' name='myInputs[]'>";
                     document.getElementById(divName).appendChild(newdiv);
                     newdiv.style.display = "inline-block";
                     counter++;
@@ -160,29 +160,37 @@
           </div>
         </div>
         <div class="col-md-4">
-          <span class="label label-default">Contract Template</span><br>
-          <b>Smart Sales Contract DAC</b><span class="help-block">Smart Sales Contracts are fulfillment programs that dispense invoices, manage inventory, and collect payments. </span>
+          <span class="label label-default">Smart Contract DAC</span><br>
+          <b>Smart Online Store DAC</b><span class="help-block">Smart eCommerce DACs are fulfillment programs that handle sales requests, manage inventory, and collect payments. </span>
           <div class="form-group">
-            <label class="control-label">DAC Address: (To Receive Payments)</label>
+            <label class="control-label">RSS Feed lists your Product Inventory:</label>
+            <span class="help-block">See this<a href="https://developers.google.com/shopping-content/managing-local-product-data/content-api-inventory-feed"> link</a> for help.</span>
             <div class="controls">
-              <input type="text" class="form-control">
+              <input type="text" placeholder="http://" class="form-control">
             </div>
           </div>
           <div class="checkbox">
             <label>
-              <input type="checkbox" value="true">Create new payment address per transaction</label>
+              <input type="checkbox" value="true">Digital Goods</label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="true">Physical Goods</label>
           </div>
           <label class="form-label">After payment is sent, funds are held until:</label>
           <div class="radio">
             <label>
-              <input type="radio">Buyer confirms</label>
-          </div>
-          <div class="radio">
+              <input type="radio">Buyer closes contract</label><br>
             <label>
-              <input type="radio">Seller confirms</label>
+              <input type="radio">Seller closes contract</label><br>
+            <input type="radio">Contract closes at payment
           </div>
-          <label class="form-label">Contract Logic:</label>
-          <input type="text" placeholder="Sell 1000 Beanie Babies for $500 each" class="form-control">
+          <label class="form-label">Contract created when:</label>
+          <select class="form-control">
+            <option>Buyer sends request</option>
+            <option>Buyer sends payment</option>
+            <option>Seller approves payment</option>
+          </select>
           <label class="form-label">Contract Runs:</label>
           <select class="form-control">
             <option>Until sold out</option>
@@ -191,7 +199,9 @@
           </select>
           <label class="form-label">Expiration Date:</label>
           <input type="text" placeholder="mm/dd/yy" class="form-control">
-          <span class="help-block">Fuel is required to run the contract. This program will collect 3% of payments, calculated in USD per transaction performed. </span><br>
+          <span class="help-block">Fuel is required to run the contract. This program will collect 3% of payments, calculated in USD per transaction performed. </span>
+          <label class="form-label">Email Address</label>
+          <input type="number" class="form-control">An email has been sent with further instructions - please check your fuel charges and send BTC to start this DAC. <br>
           <a class="btn btn-primary">Send</a><br></div><br>
         <div class="col-md-4">
           <span class="label label-default">Execute Smart Contracts</span><br>
@@ -205,7 +215,7 @@
           <div class="form-group">
             <label class="control-label">Provide Unique Identifier:</label>
             <div class="controls">
-              <input type="text" placeholder="searh keyword or name or numbers" class="form-control">
+              <input type="text" placeholder="keyword or name or numbers" class="form-control">
               <br></div>
             <label class="form-label">BTC Address (will be charged for Fuel):</label>
             <input type="text" class="form-control">
