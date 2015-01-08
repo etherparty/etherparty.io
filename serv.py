@@ -30,12 +30,13 @@ binaryprefixes = ['ttf','woff','mp4','ogg','webm', 'jpg', 'png']
 @app.route("/<path:ex>")
 def extra(ex='index.html'):
 
-  if request.headers.has_key("Range"):
-    sts = 206
-  else:
-    sts = 200
+   if request.headers.has_key("Range"):
+     sts = 206
+   else:
+     sts = 200
 
    print(ex)
+
    try:
     prefix = ex.split('.')[-1]
     filetype = filetypes[ prefix ] 
