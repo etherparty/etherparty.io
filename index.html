@@ -108,8 +108,9 @@
                                     <li><a href="#team" title="" class="scrollto">Team</a></li>
                                     <li><a href="#mobile-download" title="" class="scrollto">Demo</a></li>
                                     <!-- Login and Signup Modal on click -->
-                                    <li><a class="btn btn-nav" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a></li>
-                                    <li><a class="btn btn-nav btn-signup" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Sign Up</a></li> 
+                                    <!-- <li><a class="btn btn-nav" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Login</a></li> 
+                                    <li><a class="btn btn-nav btn-signup" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Sign Up</a></li> -->
+                                    <li><a class="btn btn-nav btn-signup" href="#registration">Register now</a></li> 
                                 </ul>
                             </div><!-- /End Navbar-Collapse -->
                         </div><!-- /End Col -->
@@ -132,8 +133,8 @@
                                 <i class="icon icon_close_alt2"></i>
                             </button>
                             <!-- Modal-Header Title-->
-                            <h4 class="modal-title">Sign in to <span>Etherparty</span></h4>
-                            <p class="modal-subtitle">Enter your email and password</p>
+                            <h4 class="modal-title">Register with <span>Etherparty</span></h4>
+                            <!-- <p class="modal-subtitle">Enter your email and name</p> -->
                         </div><!-- /End Modal-Header -->
 
                         <!-- Modal-Body Content -->
@@ -147,48 +148,18 @@
                                             <p class="lm-success"><i class="icon icon_check_alt2"></i> <strong>Congratulations it worked!</strong></p>
                                             <p class="lm-failed"><i class="icon icon_close_alt2"></i><strong> Uh Oh! Something went wrong:(</strong></p>
                                             <!-- Input Fields -->
+                                            <input id="lm-name" class="form-control input-lg" type="text" placeholder="Name" name="lm-name" required>
                                             <input id="lm-email" class="form-control input-lg" type="text" placeholder="Email" name="lm-email" required>
-                                            <input id="lm-password" class="form-control input-lg" type="password" placeholder="Password" name="lm-password" required>
+                                            <input id="lm-address" class="form-control input-lg" type="text" placeholder="Bitcoin address" name="lm-address" required>
+                                            <input id="lm-alias" class="form-control input-lg" type="text" placeholder="Alias (optional)" name="lm-alias" required>
                                             <!-- Login Button -->
-                                            <button class="btn btn-color">Login</button>
+                                            <button class="btn btn-color"> Submit registration </button>
                                         </form>
                                     </div><!-- /End Login Form -->
                                  </div>
                             </div><!-- /End Login Form Box -->
-                            <div class="box">
-                                <!-- Signup Form -->
-                                <div class="content registerBox" style="display:none;">
-                                    <form id="signup-modal" role="form">
-                                        <!-- Success/Alert Notification -->
-                                        <p class="sm-success"><i class="icon icon_check_alt2"></i> <strong>Congratulations it worked!</strong></p>
-                                        <p class="sm-failed"><i class="icon icon_close_alt2"></i><strong> Uh Oh! Something went wrong :(</strong></p>
-                                        <!-- Input Fields -->
-                                        <input id="sm-email" class="form-control input-lg" type="text" placeholder="Email" name="sm-email" required>
-                                        <input id="sm-password" class="form-control input-lg" type="password" placeholder="Password" name="sm-password">
-                                        <input id="sm-confirm" class="form-control input-lg" type="password" placeholder="Repeat Password" name="sm-confirm">
-                                        <!-- Signup Button -->
-                                        <button class="btn btn-color">Create Account</button>
-                                    </form>
-                                    
-                                </div><!-- /End Signup Form -->
-                            </div><!-- /End Signup Form Box -->
+                            <small> We will not sell your information to anyone. You will receive a email confirmation after your registration has been processed. </small>
                         </div><!-- /End Modal-Body -->
-
-                        <!-- Modal-Footer -->
-                        <div class="modal-footer">
-                            <!-- Login-Footer. Redirect to Signup-Modal-->
-                            <div class="forgot login-footer">
-                                <span>Don't have an account? 
-                                     <a href="javascript: showRegisterForm();">Sign up.</a>
-                                </span>
-                            </div>
-                            <!-- Signup-Footer. Redirect to Login-Modal -->
-                            <div class="forgot register-footer" style="display:none">
-                                 <span>Already have an account?</span>
-                                 <a href="javascript: showLoginForm();">Login</a>
-                            </div>
-                        </div><!-- /End Modal-Footer -->      
-                      
                     </div><!-- /End Modal Content -->
                 </div><!-- /End Modal Dialog -->
             </div><!-- /End Modal -->
@@ -898,57 +869,84 @@
     
         
     <!-- ==================================================
-        MOBILE DOWNLOAD SECTION
+        REGISTRATION SECTION
     ======================================================= -->
-    <section class="mobile-download light-bg" id="mobile-download">
+    <section class="registration light-bg" id="registration">
         <div class="container">
             <div class="wrapper-lg">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Download the App</h2>
-                        <p class="large">Don't miss the chance to get our amazing Mobile Application. Get connected anytime.</p>
+                        <h2>Register with us</h2>
+                        <p class="large">Don't miss the chance to get updates and access to services. Register now.</p>
                     </div>
                 </div>
                 <div class="row">
                     <!-- Text and Mobile Download Buttons -->
                     <div class="col-sm-6 col-md-4">
-                        <h3>Supercharge your Productivity</h3>
-                        <p class="mobile-text">With an online dashboard and a mobile app, you'll have full control of your account and see your usage in real-time. <span class="text-color">Even more convenient!</span></p>
-                        <a href="#" class="btn btn-color"><i class="icon icon_cloud-download_alt"></i>Download Now!!</a>
+                        <h3>Get connected on the blockchain.</h3>
+                        <p class="mobile-text">Use our blockchain services to register with us, if desired we will send you updates regarding our services and offer you insider access to the latest features coming to our platform. <span class="text-color"> Sign up today! </span></p>
+                        <a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();" class="btn btn-color"><i class="icon icon_cloud-download_alt"></i>Register Now!!</a>
+            <p class="small"> We will never sell your personal information to anyone, ever. </p>
                     </div>
                   
-                    <div class="col-sm-6 col-md-4">
-                        <!-- Screenshot Carousel -->
-                        <div class="shot-container">
-                            <div id="owl-carousel-shots-phone" class="owl-carousel">
-                                <div class="owl-container text-center shots-modal">
-                                    <img src="assets/images/app-screenshots/app-screenshot1alt.jpg" alt="" title="this is the title" />
-                                </div>
-                                <div class="owl-container text-center shots-modal">
-                                    <img src="assets/images/app-screenshots/app-screenshot2alt.jpg" alt="" title="this is the title" />
-                                </div>
-                                <div class="owl-container text-center shots-modal">
-                                    <img src="assets/images/app-screenshots/app-screenshot3alt.jpg" alt="" title="this is the title" />
-                                </div>
-                            </div><!-- /End owl carousel-->
-                        </div><!-- /End Container -->
-                    </div>
 
-                    <div class="col-sm-12 col-md-4 right-features">
-                        <!-- More Features -->
-                        <div class="col-sm-4 col-md-12">
-                            <h4>Get Notified</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam inventore.</p>
-                        </div>
-                        <div class="col-sm-4 col-md-12">
-                            <h4>Add Data in Seconds</h4>
-                            <p>Magnam beatae similique molestias incidunt, assumenda dolorem ea deserunt.</p>
-                        </div>
-                        <div class="col-sm-4 col-md-12">
-                            <h4>Real Time Alerts</h4>
-                            <p>Accusantium at sapiente mollitia asperiores quisquam rerum hic et animi.</p>
-                        </div>
-                    </div>
+                   <div class="col-sm-10 col-md-8">
+                        <form class="mailchimp-subscribe" role="form">
+                            <div class="table">
+                                <div class="table-row">
+                                    <div class="table-cell getnewsletter">
+                                        <h5 class="table-title">Search registrants</h5>
+                                    </div>
+                                    <div class="table-cell">
+                                        <div class="input-group text-white">
+                                            <!-- Input Form -->
+                                            <input type="email" id="subscriber-email" name="email" placeholder="Your email address" class="form-control">
+                                            <!-- Submit Button -->
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-white">Search</button>
+                                            </span>
+                                        </div><!-- /End Input Group -->
+                                    </div><!-- /End Table-Cell -->
+                                </div><!-- /End Table-Row -->
+                            </div><!-- /End Table -->
+                            <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
+                                <!-- Notifications --> 
+                                <p class="mc-success"></p>
+                                <p class="mc-failed"></p>
+                            </div>
+                        </form><!-- /End Mailchimp Subscribe Form -->
+                  </div> <!-- /End Search -->
+                    <div class="col-sm-10 col-md-8">
+                        <h3>Registered participants</h3>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>ID#</th>
+                              <th>Alias</th>
+                              <th>Reg#</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">0</th>
+                              <td>"chroot"</td>
+                              <td>2c33eafe131aa1ae768bf97b4f103cdebf124444dff5929d9774c2c8c9987833</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>"lisa"</td>
+                              <td>c5df544a3dd7b81338bf55fa4a6b819e684d094dfe7a3f08a8407a83df667397</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>null</td>
+                              <td>bc2a4e0b76e42156157eb7295ee2889fe0bc49e3a00f572c388cc3ded6c618fa</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div><!-- /End Table-->
                 </div><!-- /End Row -->
             </div><!-- /End Wrapper -->
         </div><!-- /End Container -->
