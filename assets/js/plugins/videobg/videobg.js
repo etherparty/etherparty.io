@@ -9,7 +9,8 @@ $(document).ready(function() {
     "height": 720,
     "path": "assets/images/video/",
     "filename": "Data_Network.webmsd",
-    "types": ["webm"]
+    "types": ["webm"],
+	"loop": "true",
 	});
 
 
