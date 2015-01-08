@@ -49,7 +49,7 @@ def extra(ex='index.html'):
 
     if sts == 206: 
       resp.headers.add('Accept-Ranges','bytes')
-      resp.headers.add('Content-Range','bytes 0-')
+      resp.headers.add('Content-Range','bytes %s-%s/%s' % (str(0),str(len(ret)),str(len(ret))) )
 
     return resp 
    except Exception as e:
