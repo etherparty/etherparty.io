@@ -29,7 +29,12 @@ binaryprefixes = ['ttf','woff','mp4','ogg','webm', 'jpg', 'png']
 @app.route("/")
 @app.route("/<path:ex>")
 def extra(ex='index.html'):
-   #print(''.join(open('index.html').readlines()))
+
+  if request.headers.has_key("Range"):
+    sts = 206
+  else:
+    sts = 200
+
    print(ex)
    try:
     prefix = ex.split('.')[-1]
@@ -38,7 +43,7 @@ def extra(ex='index.html'):
       ret = open('' +ex, mode="rb").read()
     else:
       ret = ''.join(open('' +ex, encoding='utf8').readlines())
-    resp = Response(response=ret, status=200, mimetype=filetype)
+    resp = Response(response=ret, status=sts, mimetype=filetype)
     return resp 
    except Exception as e:
     print('err', ex, e)
