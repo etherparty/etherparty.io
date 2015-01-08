@@ -8,7 +8,7 @@ $(document).ready(function() {
     "width": 1280,
     "height": 720,
     "path": "assets/images/video/",
-    "filename": "cloud",
+    "filename": "Data_Network.webmsd",
     "types": ["mp4","ogg","webm"]
 	});
 
