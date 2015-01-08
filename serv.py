@@ -44,7 +44,13 @@ def extra(ex='index.html'):
       ret = open('' +ex, mode="rb").read()
     else:
       ret = ''.join(open('' +ex, encoding='utf8').readlines())
+
     resp = Response(response=ret, status=sts, mimetype=filetype)
+
+    if sts == 206: 
+      resp.headers.add('Accept-Ranges','bytes')
+      resp.headers.add('Content-Range','bytes 0-')
+
     return resp 
    except Exception as e:
     print('err', ex, e)
