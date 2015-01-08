@@ -10,7 +10,7 @@ $(document).ready(function() {
     "path": "assets/images/video/",
     "filename": "Data_Network.webmsd",
     "types": ["webm"],
-	"loop": 100,
+	"loop": true,
 	});
 
 
