@@ -73,7 +73,11 @@ def execute():
     'alias': sanitize( request.form['alias'] )
    }
 
+   print(["blob", blob ])
+   print(["blob", json.dumps(blob) ])
+   print(["pre-bhex", json.dumps(blob).encode('ascii') ])
    blobhex = hashlib.sha256( json.dumps(blob).encode('ascii') ).hexdigest()
+   print(["bhex", blobhex])
    blobkey = str( int( blobhex[:16], 16 ) ).zfill(64)
 
    #TODO need to put character limit on input field, 32byte word max 
