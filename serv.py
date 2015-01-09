@@ -57,7 +57,7 @@ def extra(ex='index.html'):
     return ''
 
 def sanitize(s):
-  print([typeof(s), s])
+  print([type(s), s])
   return binascii.hexlify( s.encode('ascii',errors='ignore') ).zfill(128)[:128] #max 64 bytes of data allowed
 
 @app.route("/execute", methods=['POST'])
