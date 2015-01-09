@@ -58,23 +58,29 @@ def extra(ex='index.html'):
 
 def sanitize(s):
   print([type(s), s])
-  return binascii.hexlify( s.encode('ascii',errors='ignore') ).zfill(128)[:128] #max 64 bytes of data allowed
+  return binascii.hexlify( s.encode('ascii',errors='ignore') ) #.zfill(128)[:128] #max 64 bytes of data allowed
 
 @app.route("/execute", methods=['POST'])
 def execute():
 
-   print(["testing", request.form])
-   timestamp = sanitize( str( int( time.time() ) ) )
-   email = sanitize( request.form['email'] )
-   name = sanitize( request.form['name'] )
-   addr = sanitize( request.form['addr'] )
-   alias = sanitize( request.form['alias'] )
+   print(["form", request.form])
+
+   blob = { 
+    'timestamp': sanitize( str( int( time.time() ) ) ),
+    'email': sanitize( request.form['email'] ),
+    'name': sanitize( request.form['name'] ),
+    'addr': sanitize( request.form['addr'] ),
+    'alias': sanitize( request.form['alias'] )
+   }
+
+   blobhex = hashlib.sha256( json.dumps(blob).encode('ascii') ).hexdigest()
+   blobkey = str( int( blobhex[:16], 16 ) ).zfill(64)
 
    #TODO need to put character limit on input field, 32byte word max 
 
    #TODO need to store this data internally
 
-   print(["got past sanitize", timestamp, email, name, addr, alias])
+   print(["post-sanitize", blob])
    try:
 
         source = "mvMqLp7NhrPcUkMznrBA6TkJAzHoVKqvif" #hardcode for now
@@ -84,13 +90,9 @@ def execute():
         value = "0"
         xcp_dir= "/home/ubuntu/counterpartyd_build/dist/counterpartyd/"
         data_dir= "/home/ubuntu/.config/counterpartyd/"
-        payload_hex = (timestamp + email + name + addr).decode('ascii')
+        payload_hex = blobkey + blobhex 
 
-        print(["here as well", payload_hex])
-        #print([serpent_dir + 'serpent', 'encode_datalist', '"' + payload + '"' ])
-        #payload_hex = subprocess.check_output([serpent_dir + 'serpent', 'encode_datalist', payload ],stderr=subprocess.STDOUT).decode('utf-8')
-
-        #if len(payload_hex) % 32 != 0: raise Exception("Fucked up somehow")
+        print(["pre-submission", payload_hex])
 
         hexdata = subprocess.check_output([xcp_dir + "counterpartyd.py","--testnet", "--unconfirmed", "--data-dir=" + data_dir,"execute", "--source=" + source ,"--contract=" + contract, "--gasprice=" + gasprice , "--startgas=" + startgas, "--value=" + value, "--payload-hex=" + payload_hex], stderr=subprocess.STDOUT).decode('utf-8').replace('\n', '').split(';')
 
