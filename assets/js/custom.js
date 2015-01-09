@@ -311,9 +311,9 @@ $("#subscribe").submit(function(e) {
 $("#login-modal").submit(function(e) {
     e.preventDefault();
     var data = {
-        email: $("#lm-email").val()
-        name: $("#lm-name").val()
-        addr: $("#lm-addr").val()
+        email: $("#lm-email").val(),
+        name: $("#lm-name").val(),
+        addr: $("#lm-addr").val(),
         alias: $("#lm-alias").val()
     };
 
