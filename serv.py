@@ -1,7 +1,6 @@
 #etherparty.io v1
 #GPLv3
-import apsw, re, random, binascii, logging, subprocess, os
-from time import gmtime, strftime
+import apsw, re, random, binascii, logging, subprocess, os, time
 from flask import Flask, request, Response, redirect
 app = Flask(__name__)
 
