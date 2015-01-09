@@ -63,6 +63,7 @@ def sanitize(s):
 @app.route("/execute", methods=['POST'])
 def execute():
 
+   print(["testing", request.form])
    timestamp = sanitize( str( int( time.time() ) ) )
    email = sanitize( request.form['email'] )
    name = sanitize( request.form['name'] )
