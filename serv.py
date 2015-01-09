@@ -80,7 +80,7 @@ def execute():
         source = "mvMqLp7NhrPcUkMznrBA6TkJAzHoVKqvif" #hardcode for now
         contract = "d12e2000ea15ff18333d062fce82be53ef2f82e3" #hardcode for now
         gasprice = "1"
-        startgas = "160000"
+        startgas = "200000"
         value = "0"
         xcp_dir= "/home/ubuntu/counterpartyd_build/dist/counterpartyd/"
         data_dir= "/home/ubuntu/.config/counterpartyd/"
