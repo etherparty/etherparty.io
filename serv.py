@@ -73,18 +73,14 @@ def execute():
     'alias': sanitize( request.form['alias'] )
    }
 
-   print(["blob", blob ])
-   print(["blob", json.dumps(blob) ])
-   print(["pre-bhex", json.dumps(blob).encode('ascii') ])
    blobhex = hashlib.sha256( json.dumps(blob).encode('ascii') ).hexdigest()
-   print(["bhex", blobhex])
    blobkey = str( int( blobhex[:16], 16 ) ).zfill(64)
 
    #TODO need to put character limit on input field, 32byte word max 
 
    #TODO need to store this data internally
 
-   print(["post-sanitize", blob])
+   print(["post-sanitize", blob, blobhex, blobkey])
    try:
 
         source = "mvMqLp7NhrPcUkMznrBA6TkJAzHoVKqvif" #hardcode for now
@@ -105,7 +101,7 @@ def execute():
    except Exception as e:
         print(e, e.output, e.returncode)
 
-   return ''; 
+   return blobkey; 
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1",port=6666, debug=False, use_reloader=True)
