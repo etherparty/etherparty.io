@@ -79,10 +79,10 @@ def execute():
 
         source = "mvMqLp7NhrPcUkMznrBA6TkJAzHoVKqvif" #hardcode for now
         contract = "d12e2000ea15ff18333d062fce82be53ef2f82e3" #hardcode for now
-        gasprice = 1
-        startgas = 100000 
-        value = 0
-        payload_hex = timestamp + email + name + addr
+        gasprice = "1"
+        startgas = "100000"
+        value = "0"
+        payload_hex = (timestamp + email + name + addr).decode('ascii')
 
         print(["here as well", payload_hex])
         #print([serpent_dir + 'serpent', 'encode_datalist', '"' + payload + '"' ])
