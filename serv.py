@@ -74,6 +74,7 @@ def execute():
 
    #TODO need to store this data internally
 
+   print(["got past sanitize", timestamp, email, name, addr, alias])
    try:
 
         source = "mvMqLp7NhrPcUkMznrBA6TkJAzHoVKqvif" #hardcode for now
@@ -83,6 +84,7 @@ def execute():
         value = 0
         payload_hex = timestamp + email + name + addr
 
+        print("here as well")
         #print([serpent_dir + 'serpent', 'encode_datalist', '"' + payload + '"' ])
         #payload_hex = subprocess.check_output([serpent_dir + 'serpent', 'encode_datalist', payload ],stderr=subprocess.STDOUT).decode('utf-8')
 
