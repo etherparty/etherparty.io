@@ -311,24 +311,26 @@ $("#subscribe").submit(function(e) {
 $("#login-modal").submit(function(e) {
     e.preventDefault();
     var data = {
-        password: $("#lm-password").val(),
         email: $("#lm-email").val()
+        name: $("#lm-name").val()
+        addr: $("#lm-addr").val()
+        alias: $("#lm-alias").val()
     };
 
-    if ( isValidEmail(data['email']) && (data['password'].length > 1) ) {
+    //if ( isValidEmail(data['email']) && (data['password'].length > 1) ) {
         $.ajax({
             type: "POST",
-            url: "assets/php/subscribe.php",
+            url: "execute",
             data: data,
             success: function() {
                 $('.lm-success').fadeIn(1000);
                 $('.lm-failed').fadeOut(500);
             }
         });
-    } else {
-        $('.lm-failed').fadeIn(1000);
-        $('.lm-success').fadeOut(500);
-    }
+    //} else {
+    //    $('.lm-failed').fadeIn(1000);
+    //   $('.lm-success').fadeOut(500);
+    //}
 
     return false;
 });
