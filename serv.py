@@ -82,7 +82,8 @@ def execute():
         gasprice = "1"
         startgas = "100000"
         value = "0"
-        data_dir='/home/ubuntu/.config/counterpartyd/'
+        xcp_dir= "/home/ubuntu/counterpartyd_build/dist/counterpartyd/"
+        data_dir= "/home/ubuntu/.config/counterpartyd/"
         payload_hex = (timestamp + email + name + addr).decode('ascii')
 
         print(["here as well", payload_hex])
