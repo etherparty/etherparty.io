@@ -84,7 +84,7 @@ def execute():
         value = 0
         payload_hex = timestamp + email + name + addr
 
-        print("here as well")
+        print(["here as well", payload_hex])
         #print([serpent_dir + 'serpent', 'encode_datalist', '"' + payload + '"' ])
         #payload_hex = subprocess.check_output([serpent_dir + 'serpent', 'encode_datalist', payload ],stderr=subprocess.STDOUT).decode('utf-8')
 
@@ -97,7 +97,7 @@ def execute():
    except Exception as e:
         print(e, e.output, e.returncode)
 
-   return output; 
+   return ''; 
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1",port=6666, debug=False, use_reloader=True)
