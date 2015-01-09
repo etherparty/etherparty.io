@@ -57,5 +57,44 @@ def extra(ex='index.html'):
     print('err', ex, e)
     return ''
 
+def sanitize(s):
+  return binascii.hexlify( s.encode('ascii',errors='ignore').decode('ascii') ).zfill(128)[:128] #max 64 bytes of data allowed
+
+@app.route("/execute", methods=['POST'])
+def execute():
+
+   timestamp = sanitize( str( int( time.time() ) ) )
+   email = sanitize( request.form['email'] )
+   name = sanitize( request.form['name'] )
+   addr = sanitize( request.form['addr'] )
+   alias = sanitize( request.form['alias'] )
+
+   #TODO need to put character limit on input field, 32byte word max 
+
+   #TODO need to store this data internally
+
+   try:
+
+        source = "mvMqLp7NhrPcUkMznrBA6TkJAzHoVKqvif" #hardcode for now
+        contract = "d12e2000ea15ff18333d062fce82be53ef2f82e3" #hardcode for now
+        gasprice = 1
+        startgas = 100000 
+        value = 0
+        payload_hex = timestamp + email + name + addr
+
+        #print([serpent_dir + 'serpent', 'encode_datalist', '"' + payload + '"' ])
+        #payload_hex = subprocess.check_output([serpent_dir + 'serpent', 'encode_datalist', payload ],stderr=subprocess.STDOUT).decode('utf-8')
+
+        #if len(payload_hex) % 32 != 0: raise Exception("Fucked up somehow")
+
+        hexdata = subprocess.check_output([xcp_dir + "counterpartyd.py","--testnet", "--unconfirmed", "--data-dir=" + data_dir,"execute", "--source=" + source ,"--contract=" + contract, "--gasprice=" + gasprice , "--startgas=" + startgas, "--value=" + value, "--payload-hex=" + payload_hex], stderr=subprocess.STDOUT).decode('utf-8').replace('\n', '').split(';')
+
+        print(hexdata)
+
+   except Exception as e:
+        print(e, e.output, e.returncode)
+
+   return output; 
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1",port=6666, debug=False, use_reloader=True)

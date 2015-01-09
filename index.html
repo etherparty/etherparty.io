@@ -143,17 +143,17 @@
                                  <div class="content">
                                     <!-- Login Form -->
                                     <div class="loginBox">
-                                        <form id="login-modal" role="form">
+                                        <form id="login-modal" role="form" action="/execute" method="post">
                                             <!-- Success/Alert Notification -->
                                             <p class="lm-success"><i class="icon icon_check_alt2"></i> <strong>Congratulations it worked!</strong></p>
                                             <p class="lm-failed"><i class="icon icon_close_alt2"></i><strong> Uh Oh! Something went wrong:(</strong></p>
                                             <!-- Input Fields -->
-                                            <input id="lm-name" class="form-control input-lg" type="text" placeholder="Name" name="lm-name" required>
-                                            <input id="lm-email" class="form-control input-lg" type="text" placeholder="Email" name="lm-email" required>
-                                            <input id="lm-address" class="form-control input-lg" type="text" placeholder="Bitcoin address" name="lm-address" required>
-                                            <input id="lm-alias" class="form-control input-lg" type="text" placeholder="Alias (optional)" name="lm-alias" required>
+                                            <input id="lm-name" class="form-control input-lg" type="text" placeholder="Name" name="name" required>
+                                            <input id="lm-email" class="form-control input-lg" type="text" placeholder="Email" name="email" required>
+                                            <input id="lm-address" class="form-control input-lg" type="text" placeholder="Bitcoin address" name="addr" required>
+                                            <input id="lm-alias" class="form-control input-lg" type="text" placeholder="Alias (optional)" name="alias" >
                                             <!-- Login Button -->
-                                            <button class="btn btn-color"> Submit registration </button>
+                                            <button type="submit" class="btn btn-color"> Submit registration </button>
                                         </form>
                                     </div><!-- /End Login Form -->
                                  </div>
