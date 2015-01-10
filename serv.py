@@ -1,7 +1,6 @@
 #etherparty.io v1
 #GPLv3
-import apsw, re, random, binascii, logging, subprocess, os
-from time import gmtime, strftime
+import apsw, re, random, binascii, logging, subprocess, os, time, json, hashlib
 from flask import Flask, request, Response, redirect
 app = Flask(__name__)
 
@@ -56,6 +55,53 @@ def extra(ex='index.html'):
    except Exception as e:
     print('err', ex, e)
     return ''
+
+def sanitize(s):
+  print([type(s), s])
+  return binascii.hexlify( s.encode('ascii',errors='ignore') ).decode('ascii') #.zfill(128)[:128] #max 64 bytes of data allowed
+
+@app.route("/execute", methods=['POST'])
+def execute():
+
+   print(["form", request.form])
+
+   blob = { 
+    'timestamp': sanitize( str( int( time.time() ) ) ),
+    'email': sanitize( request.form['email'] ),
+    'name': sanitize( request.form['name'] ),
+    'addr': sanitize( request.form['addr'] ),
+    'alias': sanitize( request.form['alias'] )
+   }
+
+   blobhex = hashlib.sha256( json.dumps(blob).encode('ascii') ).hexdigest()
+   blobkey = str( int( blobhex[:16], 16 ) ).zfill(64)
+
+   #TODO need to put character limit on input field, 32byte word max 
+
+   #TODO need to store this data internally
+
+   print(["post-sanitize", blob, blobhex, blobkey])
+   try:
+
+        source = "mvMqLp7NhrPcUkMznrBA6TkJAzHoVKqvif" #hardcode for now
+        contract = "d12e2000ea15ff18333d062fce82be53ef2f82e3" #hardcode for now
+        gasprice = "1"
+        startgas = "200000"
+        value = "0"
+        xcp_dir= "/home/ubuntu/counterpartyd_build/dist/counterpartyd/"
+        data_dir= "/home/ubuntu/.config/counterpartyd/"
+        payload_hex = blobkey + blobhex 
+
+        print(["pre-submission", payload_hex])
+
+        hexdata = subprocess.check_output([xcp_dir + "counterpartyd.py","--testnet", "--unconfirmed", "--data-dir=" + data_dir,"execute", "--source=" + source ,"--contract=" + contract, "--gasprice=" + gasprice , "--startgas=" + startgas, "--value=" + value, "--payload-hex=" + payload_hex], stderr=subprocess.STDOUT).decode('utf-8').replace('\n', '').split(';')
+
+        print(hexdata)
+
+   except Exception as e:
+        print(e, e.output, e.returncode)
+
+   return blobkey; 
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1",port=6666, debug=False, use_reloader=True)
