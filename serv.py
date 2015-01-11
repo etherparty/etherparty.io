@@ -103,9 +103,10 @@ def execute():
 
         db = apsw.Connection(db_file)
         cursor = db.cursor()
-        rows = list(cursor.execute('''INSERT into users(blobhex,blobkey,txid,timestamp,email,name) VALUES (%s,%s,%s,%s,%s,%s)''', (blobhex, blobkey, blob['txid'], blob['timestamp'], blob['email'], blob['name'])))
-        print(rows, 'a')
+        retval = cursor.execute('''INSERT into users(blobhex,blobkey,txid,timestamp,email,name) VALUES (?,?,?,?,?,?)''', (blobhex, blobkey, blob['txid'], blob['timestamp'], blob['email'], blob['name']))
+        print(retval, 'a')
         cursor.close()
+
    except Exception as e:
         print(e, e.output, e.returncode)
 
