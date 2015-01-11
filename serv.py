@@ -126,4 +126,4 @@ def getusers():
     return rows; 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1",port=6666, debug=False, use_reloader=True)
+    app.run(host="127.0.0.1",port=6666, debug=True, use_reloader=True)
