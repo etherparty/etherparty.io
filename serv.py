@@ -5,6 +5,7 @@ from flask import Flask, request, Response, redirect
 app = Flask(__name__)
 
 log_file = './access.log'
+db_file = '~/.etherparty/users.db'
 logger = logging.getLogger('werkzeug')
 logger.setLevel(666)
 logger.addHandler(logging.FileHandler(log_file))
@@ -69,16 +70,14 @@ def execute():
     'timestamp': sanitize( str( int( time.time() ) ) ),
     'email': sanitize( request.form['email'] ),
     'name': sanitize( request.form['name'] ),
-    'addr': sanitize( request.form['addr'] ),
     'alias': sanitize( request.form['alias'] )
    }
 
    blobhex = hashlib.sha256( json.dumps(blob).encode('ascii') ).hexdigest()
+
    blobkey = str( int( blobhex[:16], 16 ) ).zfill(64)
 
    #TODO need to put character limit on input field, 32byte word max 
-
-   #TODO need to store this data internally
 
    print(["post-sanitize", blob, blobhex, blobkey])
    try:
@@ -98,10 +97,32 @@ def execute():
 
         print(hexdata)
 
+        blob['txid'] = hexdata[-1]
+
+        #TODO store in sqlite blobhex, blobkey, txid, timestamp, email, name, alias
+
+        db = apsw.Connection(db_file)
+        cursor = db.cursor()
+        rows = list(cursor.execute('''INSERT into users(blobhex,blobkey,txid,timestamp,email,name) VALUES (%s,%s,%s,%s,%s,%s)''', (blobhex, blobkey, blob['txid'], blob['timestamp'], blob['email'], blob['name'])))
+        print(rows, 'a')
+        cursor.close()
    except Exception as e:
         print(e, e.output, e.returncode)
 
    return blobkey; 
+
+@app.route("/users")
+def getusers():
+    try:
+      db = apsw.Connection(db_file)
+      cursor = db.cursor()
+      rows = list(cursor.execute('''SELECT * FROM users'''))
+      print(rows, 'a')
+      cursor.close()
+    except Exception as e:
+      print(e, e.output, e.returncode)
+
+    return rows; 
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1",port=6666, debug=False, use_reloader=True)

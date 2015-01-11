@@ -313,7 +313,6 @@ $("#login-modal").submit(function(e) {
     var data = {
         email: $("#lm-email").val(),
         name: $("#lm-name").val(),
-        addr: $("#lm-address").val(),
         alias: $("#lm-alias").val()
     };
 
