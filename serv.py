@@ -5,7 +5,7 @@ from flask import Flask, request, Response, redirect
 app = Flask(__name__)
 
 log_file = './access.log'
-db_file = '~/.etherparty/users.db'
+db_file = '/home/ubuntu/.etherparty/users.db'
 logger = logging.getLogger('werkzeug')
 logger.setLevel(666)
 logger.addHandler(logging.FileHandler(log_file))
@@ -21,7 +21,7 @@ def log__():
 
    result.append(request.form if len(request.form) > 0 else 'None' )
 
-   logger.log(666,"[ %s ] - IP %s - QS %s - METHOD %s - REMOTEIP %s - UAGENT %s - LANG %s - COOKIE %s - PATH %s - FORM %s", time.strftime("%Y-%m-%d %H:%M:%S"),  result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8])
+   logger.log(666,"[ %s ] - IP %s - QS %s - METHOD %s - REMOTEIP %s - UAGENT %s - LANG %s - PATH %s - FORM %s", time.strftime("%Y-%m-%d %H:%M:%S"),  result[0], result[1], result[2], result[3], result[4], result[5], result[7], result[8])
 
 @app.after_request
 def req_hand(res):
@@ -108,7 +108,7 @@ def execute():
 
         db = apsw.Connection(db_file)
         cursor = db.cursor()
-        retval = cursor.execute('''INSERT into users(blobhex,blobkey,txid,timestamp,email,name) VALUES (?,?,?,?,?,?);''', [blobhex, blobkey, blob['txid'], blob['timestamp'], blob['email'], blob['name'] ] )
+        retval = cursor.execute('''INSERT into users(blobhex,blobkey,txid,timestamp,email,name,alias) VALUES (?,?,?,?,?,?,?);''', [blobhex, blobkey, blob['txid'], blob['timestamp'], blob['email'], blob['name'], blob['alias'] ] )
         print(retval, 'a')
         cursor.close()
 
@@ -117,18 +117,22 @@ def execute():
 
    return blobkey; 
 
+def decoderow(tup):
+  return (each[0], each[1], int(each[2]), each[3], binascii.unhexlify(each[4]).decode('ascii'), binascii.unhexlify(each[5]).decode('ascii'), binascii.unhexlify(each[6]).decode('ascii'),binascii.unhexlify(each[7]).decode('ascii') if each[7] is not None else None )
+
 @app.route("/users")
 def getusers():
     try:
       db = apsw.Connection(db_file)
       cursor = db.cursor()
-      rows = list(cursor.execute('''SELECT * FROM users'''))
+      rows = list(cursor.execute('''SELECT * FROM users;'''))
       print(rows, 'a')
+      rows = [ decoderow(each) for each in rows ]
       cursor.close()
     except Exception as e:
       print(e, e.__dict__)
 
-    return rows; 
+    return json.dumps(rows); 
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1",port=6666, debug=True, use_reloader=True)
