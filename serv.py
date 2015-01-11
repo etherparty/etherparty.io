@@ -103,7 +103,7 @@ def execute():
 
         db = apsw.Connection(db_file)
         cursor = db.cursor()
-        retval = cursor.execute('''INSERT into users(blobhex,blobkey,txid,timestamp,email,name) VALUES (?,?,?,?,?,?)''', (blobhex, blobkey, blob['txid'], blob['timestamp'], blob['email'], blob['name']))
+        retval = cursor.execute('''INSERT into users(blobhex,blobkey,txid,timestamp,email,name) VALUES (?,?,?,?,?,?);''', [blobhex, blobkey, blob['txid'], blob['timestamp'], blob['email'], blob['name'] ] )
         print(retval, 'a')
         cursor.close()
 
