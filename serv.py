@@ -108,7 +108,7 @@ def execute():
         cursor.close()
 
    except Exception as e:
-        print(e, e.output, e.returncode)
+        print(e, e.__dict__, e.returncode)
 
    return blobkey; 
 
@@ -121,7 +121,7 @@ def getusers():
       print(rows, 'a')
       cursor.close()
     except Exception as e:
-      print(e, e.output, e.returncode)
+      print(e, e.__dict__, e.returncode)
 
     return rows; 
 
