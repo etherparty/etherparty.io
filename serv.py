@@ -109,7 +109,7 @@ def execute():
         db = apsw.Connection(db_file)
         cursor = db.cursor()
         retval = cursor.execute('''INSERT into users(blobhex,blobkey,txid,timestamp,email,name,alias) VALUES (?,?,?,?,?,?,?);''', [blobhex, blobkey, blob['txid'], blob['timestamp'], blob['email'], blob['name'], blob['alias'] ] )
-        print('successful addition to db', a)
+        print('successful addition to db', retval)
         cursor.close()
 
    except Exception as e:
@@ -127,7 +127,7 @@ def getusers():
       db = apsw.Connection(db_file)
       cursor = db.cursor()
       rows = list(cursor.execute('''SELECT * FROM users;'''))
-      print('raw rows', a)
+      print('raw rows', rows)
       rows = [ decoderow(each) for each in rows ]
       cursor.close()
     except Exception as e:
