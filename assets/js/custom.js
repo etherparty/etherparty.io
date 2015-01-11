@@ -651,11 +651,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 }
 
 
-});
-
-
-
-
+// our custom fucking code
 function loadTable() {
 
     $.ajax({
@@ -667,3 +663,4 @@ function loadTable() {
         }
     });
 }
+});
