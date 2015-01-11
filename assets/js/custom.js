@@ -656,3 +656,14 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 
 
 
+function loadTable() {
+
+    $.ajax({
+        type: "GET",
+        url: "users",
+        success: function(d) {
+            console.log(d);
+            $('#reg-table').html("");
+        }
+    });
+}
