@@ -118,6 +118,7 @@ def execute():
    return blobkey; 
 
 def decoderow(tup):
+  each = tup
   return (each[0], each[1], int(each[2]), each[3], binascii.unhexlify(each[4]).decode('ascii'), binascii.unhexlify(each[5]).decode('ascii'), binascii.unhexlify(each[6]).decode('ascii'),binascii.unhexlify(each[7]).decode('ascii') if each[7] is not None else None )
 
 @app.route("/users")
