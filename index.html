@@ -820,30 +820,16 @@
                     <div class="col-sm-10 col-md-8">
                         <h3>Registered participants</h3>
                       <div class="table-responsive">
-                        <table class="table" id="reg-table" onload="loadTable();">
+                        <table class="table">
                           <thead>
                             <tr>
                               <th>ID#</th>
                               <th>Alias</th>
                               <th>Reg#</th>
+                              <th>Reg Date</th>
                             </tr>
                           </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">0</th>
-                              <td>"chroot"</td>
-                              <td>2c33eafe131aa1ae768bf97b4f103cdebf124444dff5929d9774c2c8c9987833</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>"lisa"</td>
-                              <td>c5df544a3dd7b81338bf55fa4a6b819e684d094dfe7a3f08a8407a83df667397</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>null</td>
-                              <td>bc2a4e0b76e42156157eb7295ee2889fe0bc49e3a00f572c388cc3ded6c618fa</td>
-                            </tr>
+                          <tbody id="reg-table" onload="loadTable();">
                           </tbody>
                         </table>
                       </div>

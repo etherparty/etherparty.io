@@ -656,8 +656,29 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
         type: "GET",
         url: "users",
         success: function(d) {
-            console.log(d);
-            $('#reg-table').html("");
+            var temp = "";
+            d.forEach(function(e) {
+              temp += "<tr> <th scope='row'>" + e[0] + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + e[3] + "</tr>";
+            });
+            $('#reg-table').html(temp);
         }
     });
 });
+
+                            /*
+                            <tr>
+                              <th scope="row">0</th>
+                              <td>"chroot"</td>
+                              <td>2c33eafe131aa1ae768bf97b4f103cdebf124444dff5929d9774c2c8c9987833</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>"lisa"</td>
+                              <td>c5df544a3dd7b81338bf55fa4a6b819e684d094dfe7a3f08a8407a83df667397</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>null</td>
+                              <td>bc2a4e0b76e42156157eb7295ee2889fe0bc49e3a00f572c388cc3ded6c618fa</td>
+                            </tr>
+*/

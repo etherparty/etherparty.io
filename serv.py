@@ -119,14 +119,14 @@ def execute():
 
 def decoderow(tup):
   each = tup
-  return (each[0], each[1], int(each[2]), each[3], binascii.unhexlify(each[4]).decode('ascii'), binascii.unhexlify(each[5]).decode('ascii'), binascii.unhexlify(each[6]).decode('ascii'),binascii.unhexlify(each[7]).decode('ascii') if each[7] is not None else None )
+  return (each[0], each[1], binascii.unhexlify(each[2]).decode('ascii') if each[2] is not None else None, binascii.unhexlify(each[3]).decode('ascii') )
 
 @app.route("/users")
 def getusers():
     try:
       db = apsw.Connection(db_file)
       cursor = db.cursor()
-      rows = list(cursor.execute('''SELECT * FROM users;'''))
+      rows = list(cursor.execute('''SELECT id,blobhex,alias,timestamp FROM users;'''))
       print('raw rows', rows)
       rows = [ decoderow(each) for each in rows ]
       cursor.close()
