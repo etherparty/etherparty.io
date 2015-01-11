@@ -657,7 +657,8 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
         url: "users",
         success: function(d) {
             var temp = "";
-            console.log(d, typeof d);
+            console.log(d);
+            d=JSON.parse(d);
             d.forEach(function(e) {
               temp += "<tr> <th scope='row'>" + e[0] + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + e[3] + "</tr>";
             });
