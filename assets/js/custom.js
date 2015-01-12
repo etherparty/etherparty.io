@@ -461,53 +461,53 @@ $('.start-charts').waypoint(function(direction){
                     value: 50,
                     color:"#C0392B",
                     highlight: "#EA402F",
-                    label: "Beautiful Design"
+                    label: "Bitcoin"
                 },
                 {
                     value: 25,
                     color: "#323A45",
                     highlight: "#4C5B70",
-                    label: "Responsive Layout"
+                    label: "Ethereum"
                 },
                 {
                     value: 15,
                     color: "#949FB1",
                     highlight: "#A8B3C5",
-                    label: "Persuasive Call to Action"
+                    label: "Counterparty"
                 },
                 {
                     value: 5,
                     color: "#27AE60",
                     highlight: "#29C36A",
-                    label: "Social Proof"
+                    label: "NXT"
                 }
 
             ];
 
             var doughnut2Data = [
                 {
-                    value: 827,
+                    value: 25,
                     color:"#C0392B",
                     highlight: "#EA402F",
-                    label: "Cups of Coffee"
+                    label: "Smart Templates"
                 },
                 {
-                    value: 1775,
+                    value: 49,
                     color: "#323A45",
                     highlight: "#4C5B70",
-                    label: "Code Hours"
+                    label: "Contracts as a Service"
                 },
                 {
-                    value: 580,
+                    value: 13,
                     color: "#2980B9",
                     highlight: "#2F97DC",
-                    label: "Design Hours"
+                    label: "Smart Monitors"
                 },
                 {
-                    value: 540,
+                    value: 12,
                     color: "#949FB1",
                     highlight: "#A8B3C5",
-                    label: "Songs Listened"
+                    label: "Smart Storage"
                 }
             ];
 
@@ -543,7 +543,7 @@ $('.start-line').waypoint(function(direction){
                         pointStrokeColor : "#fff",
                         pointHighlightFill : "#fff",
                         pointHighlightStroke : "rgba(192,57,43,1)",
-                        data : [10,20,20,15,25,37,32]
+                        data : [10,20,20,25,30,37,45]
                     },
                     {
                         label: "My Second dataset",
@@ -553,7 +553,7 @@ $('.start-line').waypoint(function(direction){
                         pointStrokeColor : "#fff",
                         pointHighlightFill : "#fff",
                         pointHighlightStroke : "rgba(50,58,69,1)",
-                        data : [20,23,33,57,74,81,96]
+                        data : [10,23,33,57,74,81,96]
                     }
                 ]
 
