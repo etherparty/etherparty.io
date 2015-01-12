@@ -550,7 +550,7 @@ $('.start-line').waypoint(function(direction){
                 labels : ["Jan 2015","June 2015","Dec 2015","Jan 2016","June 2016","Dec 2016","2017"],
                 datasets : [
                     {
-                        label: "My First dataset",
+                        label: "Cryptocurrency adoption",
                         fillColor : "rgba(192,57,43,0.2)",
                         strokeColor : "rgba(192,57,43,1)",
                         pointColor : "rgba(192,57,43,1)",
@@ -560,7 +560,7 @@ $('.start-line').waypoint(function(direction){
                         data : [10,20,20,25,30,37,45]
                     },
                     {
-                        label: "My Second dataset",
+                        label: "Smart Contract adoption",
                         fillColor : "rgba(50,58,69,0.2)",
                         strokeColor : "rgba(50,58,69,1)",
                         pointColor : "rgba(50,58,69,1)",
