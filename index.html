@@ -129,7 +129,7 @@
                         <!-- Modal-Header -->
                         <div class="modal-header">
                             <!-- Close Button -->
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <button id="lm-close-btn" type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 <i class="icon icon_close_alt2"></i>
                             </button>
                             <!-- Modal-Header Title-->
@@ -145,14 +145,14 @@
                                     <div class="loginBox">
                                         <form id="login-modal" role="form">
                                             <!-- Success/Alert Notification -->
-                                            <p class="lm-success"><i class="icon icon_check_alt2"></i> <strong>Congratulations it worked!</strong></p>
-                                            <p class="lm-failed"><i class="icon icon_close_alt2"></i><strong> Uh Oh! Something went wrong:(</strong></p>
+                                            <p class="lm-success"><i class="icon icon_check_alt2"></i> <strong>Registration Success! Your ID is <p class="lm-success-id"></p> </strong></p>
+                                            <p class="lm-failed"><i class="icon icon_close_alt2"></i><strong> Registration failed :( Try again? An email has been dispatched to our developers recording this error. </strong></p>
                                             <!-- Input Fields -->
                                             <input id="lm-name" class="form-control input-lg" type="text" placeholder="Name" name="name" required>
-                                            <input id="lm-email" class="form-control input-lg" type="text" placeholder="Email" name="email" required>
+                                            <input id="lm-email" class="form-control input-lg" type="email" placeholder="Email" name="email" required>
                                             <input id="lm-alias" class="form-control input-lg" type="text" placeholder="Alias (optional)" name="alias" >
                                             <!-- Login Button -->
-                                            <button class="btn btn-color"> Submit registration </button>
+                                            <button id="lm-submit" class="btn btn-color"> Submit registration </button>
                                         </form>
                                     </div><!-- /End Login Form -->
                                  </div>
@@ -685,41 +685,20 @@
                         <h3>Get connected on the blockchain.</h3>
                         <p class="mobile-text">Use our blockchain services to register with us, if desired we will send you updates regarding our services and offer you insider access to the latest features coming to our platform. <span class="text-color"> Sign up today! </span></p><br>
                         <a data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();" class="btn btn-color"><i class="icon icon_cloud-download_alt"></i>Register Now!!</a>
-            <p class="small"> We will never sell your personal information to anyone, ever. </p>
                     </div>
-                  
-
-                   <div class="col-sm-10 col-md-8">
-                        <form class="mailchimp-subscribe" role="form">
-                            <div class="table">
-                                <div class="table-row">
-                                    <div class="table-cell getnewsletter">
-                                        <h5 class="table-title">Search registrants</h5>
-                                    </div>
-                                    <div class="table-cell">
-                                        <div class="input-group text-white">
-                                            <!-- Input Form -->
-                                            <input type="email" id="subscriber-email" name="email" placeholder="Your email address" class="form-control">
-                                            <!-- Submit Button -->
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-white">Search</button>
-                                            </span>
-                                        </div><!-- /End Input Group -->
-                                    </div><!-- /End Table-Cell -->
-                                </div><!-- /End Table-Row -->
-                            </div><!-- /End Table -->
-                            <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
-                                <!-- Notifications --> 
-                                <p class="mc-success"></p>
-                                <p class="mc-failed"></p>
-                            </div>
-                        </form><!-- /End Mailchimp Subscribe Form -->
+                 <div class="col-sm-10 col-md-8">
+                    <h5 class="table-title">Search registrants</h5>
+                      <div class="col-xs-12 input-group text-white">
+                          <!-- Input Form -->
+                          <input type="search" id="registrant-search" name="searchbox" placeholder="Just start typing an ID#, alias" class="form-control">
+                      </div><!-- /End Input Group -->
+                      <div class="search-results"></div>
                   </div> <!-- /End Search -->
-</div> <!-- end -->
-
+                </div> <!-- end -->
+<br><br>
                 <div class="row">
                     <div class="col-sm-12 col-md-10">
-                        <h3>Most recently registered participants:</h3>
+                        <h3>Recently registered:</h3>
                       <div class="table-responsive">
                         <table class="table">
                           <thead>
@@ -730,7 +709,7 @@
                               <th>Registration Date</th>
                             </tr>
                           </thead>
-                          <tbody id="reg-table" onload="loadTable();">
+                          <tbody id="reg-table">
                           </tbody>
                         </table>
                       </div>
