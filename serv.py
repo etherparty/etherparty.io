@@ -31,6 +31,7 @@ def req_hand(res):
 filetypes = { 'js': 'application/json', 'css': 'text/css', 'html': 'text/html', 'png': 'image/png', 
    'jpg': 'image/jpg', 'php': 'text/html', 'woff': 'application/font-woff', 'ttf': 'application/x-font-ttf', 'mp4': 'video/mp4', 'ogg': 'video/ogg', 'webm': 'video/webm' }
 binaryprefixes = ['ttf','woff','mp4','ogg','webm', 'jpg', 'png']
+
 @app.route("/")
 @app.route("/<path:ex>")
 def extra(ex='index.html'):
@@ -60,7 +61,7 @@ def extra(ex='index.html'):
     return resp 
    except Exception as e:
     print('err', ex, e)
-    return ''
+    return Response(response='', status=404)
 
 def sanitize(s):
   print([type(s), s])
@@ -85,6 +86,7 @@ def execute():
    #TODO need to put character limit on input field, 32byte word max 
 
    print(["post-sanitize", blob, blobhex, blobkey])
+
    try:
 
         source = "mvMqLp7NhrPcUkMznrBA6TkJAzHoVKqvif" #hardcode for now
@@ -112,10 +114,11 @@ def execute():
         print('successful addition to db', retval)
         cursor.close()
 
+        return Response(response=blobkey, status=200) 
+
    except Exception as e:
         print(e, e.__dict__)
-
-   return blobkey; 
+        return Response(response='', status=404)
 
 def decoderow(tup):
   each = tup
@@ -126,7 +129,7 @@ def getusers():
     try:
       db = apsw.Connection(db_file)
       cursor = db.cursor()
-      rows = list(cursor.execute('''SELECT blobkey,blobhex,alias,timestamp FROM users;'''))
+      rows = list(cursor.execute('''SELECT blobkey,blobhex,alias,timestamp FROM users order by id asc;'''))
       print('raw rows', rows)
       rows = [ decoderow(each) for each in rows ]
       cursor.close()

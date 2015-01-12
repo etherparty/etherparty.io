@@ -316,14 +316,28 @@ $("#login-modal").submit(function(e) {
         alias: $("#lm-alias").val()
     };
 
-    //if ( isValidEmail(data['email']) && (data['password'].length > 1) ) {
+    //if ( isValidEmail(data['email']) &&  ) { validation here
         $.ajax({
             type: "POST",
             url: "execute",
             data: data,
-            success: function() {
-                $('.lm-success').fadeIn(1000);
-                $('.lm-failed').fadeOut(500);
+            success: function(d) {
+              $('.lm-success').fadeIn(1000);
+              $('.lm-failed').fadeOut(500);
+
+              $('.lm-success-id').text(d);
+
+              $('#lm-submit').text("Registration success!");
+              $('#lm-submit').addClass('disabled');
+
+              //setTimeout( function() { $('#lm-close-btn').click(); }, 3000);
+
+              getAndSaveUsers();
+
+            },
+            error: function() {
+              $('.lm-failed').fadeIn(1000);
+              $('.lm-success').fadeOut(500);
             }
         });
     //} else {
@@ -650,20 +664,37 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
     document.querySelector('head').appendChild(msViewportStyle);
 }
 
-
+///////////////////////////////////////////////////////////////////////
 // our custom fucking code
-    $.ajax({
-        type: "GET",
-        url: "users",
-        success: function(d) {
-            var temp = "";
-            console.log(d);
-            d=JSON.parse(d);
-            d.forEach(function(e) {
-              temp += "<tr> <th scope='row'>" + e[0] + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
-            });
-            $('#reg-table').html(temp);
-        }
-    });
+//
+    function getAndSaveUsers() {
+      $.ajax({
+          type: "GET",
+          url: "users",
+          success: function(d) {
+              var temp = "";
+              console.log(d);
+              window.etherparty = d;
+              d=JSON.parse(d).slice(d.length - 5, d.length);
+              d.forEach(function(e) {
+                temp += "<tr> <th scope='row'>" + (e[0] + '') + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
+              });
+              $('#reg-table').html(temp);
+          }
+      });
+   }
+
+   getAndSaveUsers();
+
+   $( "#registrant-search" ).on('input', function() {
+      $(".search-results").text('searched ' + $("#registrant-search").val() );// Check input( $( this ).val() ) for validity here
+      if( window.etherparty) {
+        window.etherparty.forEach(function(e) {
+          //more logic here TODO
+          temp += "<tr> <th scope='row'>" + (e[0] + '') + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
+        });
+      }
+   });
+
 });
 
