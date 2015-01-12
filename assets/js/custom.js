@@ -247,7 +247,7 @@ if (onMobile === true) {
 ============================================= */
 $(".mailchimp-subscribe").ajaxChimp({
     callback: mailchimpCallback,
-    url: "//vanbex.us9.list-manage.com/subscribe/post?u=f4b29d37a4569bcfe566bd4d5&amp;id=db50508772" // Replace your mailchimp post url inside double quote "".  
+    url: "http://vanbex.us9.list-manage.com/subscribe/post?u=f4b29d37a4569bcfe566bd4d5&amp;id=db50508772" // Replace your mailchimp post url inside double quote "".  
 });
 
 function mailchimpCallback(resp) {
@@ -533,7 +533,7 @@ $('.start-line').waypoint(function(direction){
         else {
 
             var lineChartData = {
-                labels : ["January","February","March","April","May","June","July"],
+                labels : ["Jan 2015","June 2015","Dec 2015","Jan 2016","June 2016","Dec 2016","2017"],
                 datasets : [
                     {
                         label: "My First dataset",
