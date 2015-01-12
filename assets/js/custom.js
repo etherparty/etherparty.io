@@ -28,7 +28,7 @@ function showRegisterForm(){
             $('.register-footer').fadeIn('fast');
         });
         $('.modal-title').html('Create an Account');
-        $('.modal-subtitle').html('Begin a 30-day free trial of SmartMVP');
+        $('.modal-subtitle').html('Sign up to Etherparty Beta');
     });
     $('.error').removeClass('alert alert-danger').html('');
 }
@@ -42,7 +42,7 @@ function showLoginForm(){
             $('.login-footer').fadeIn('fast');
         });
         
-        //$('.modal-title').html('Sign in to <span>SmartMvp</span>');
+        //$('.modal-title').html('Sign in to <span>Etherparty</span>');
         //$('.modal-subtitle').html('Enter your email and password');
     });
     $('.error').removeClass('alert alert-danger').html('');
@@ -247,7 +247,7 @@ if (onMobile === true) {
 ============================================= */
 $(".mailchimp-subscribe").ajaxChimp({
     callback: mailchimpCallback,
-    url: "http://themedept.us9.list-manage.com/subscribe/post?u=63465a86fdd5f3b9fa31f9278&amp;id=52df53337f" // Replace your mailchimp post url inside double quote "".  
+    url: "//vanbex.us9.list-manage.com/subscribe/post?u=f4b29d37a4569bcfe566bd4d5&amp;id=db50508772" // Replace your mailchimp post url inside double quote "".  
 });
 
 function mailchimpCallback(resp) {
