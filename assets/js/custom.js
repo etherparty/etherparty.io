@@ -321,8 +321,13 @@ $("#login-modal").submit(function(e) {
         alias: $("#lm-alias").val()
     };
 
-    $('#lm-submit').text("Registration submitted...");
+    var timer;
+    $('#lm-submit').text("Registering, one moment ");
+    timer = setInterval(function() { 
+      $("#lm-submit").append("."); timer += 1000; if (timer % 3000 == 0) $("#lm-submit").text('registering, one moment '); 
+    }, 1000);
     $('#lm-submit').addClass('disabled');
+
     //if ( isValidEmail(data['email']) &&  ) { validation here
         $.ajax({
             type: "POST",
@@ -336,12 +341,16 @@ $("#login-modal").submit(function(e) {
 
               $('#lm-submit').text("Registration success!");
 
+              clearTimeout(timer);
+
               getAndSaveUsers();
 
             },
             error: function() {
               $('.lm-failed').fadeIn(1000);
               $('.lm-success').fadeOut(500);
+
+              clearTimeout(timer);
 
               $('#lm-submit').removeClass('disabled');
               $('#lm-submit').text("Submit Registration");
