@@ -350,14 +350,13 @@ $("#login-modal").submit(function(e) {
 
               $('#lm-submit').removeClass('disabled');
               $('#lm-submit').text("Submit Registration");
-            }
+            }, 
+            complete: function() {  clearInterval(timer); }
         });
     //} else {
     //    $('.lm-failed').fadeIn(1000);
     //   $('.lm-success').fadeOut(500);
     //}
-
-    clearInterval(timer);
 
     return false;
 });
