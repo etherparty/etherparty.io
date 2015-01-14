@@ -677,7 +677,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
           success: function(d) {
               var temp = "";
               window.etherparty = d;
-              d=JSON.parse(d)
+              d=JSON.parse(d); d=d.slice(d.length - 5, d.length);
               console.log(typeof d, d.length - 5, d.length, d.slice(d.length - 5, d.length) );
               
               d.forEach(function(e) {
