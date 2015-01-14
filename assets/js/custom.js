@@ -720,7 +720,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
       }
    });
    
-   $("#registrant-search").trigger('input');
+   setTimeout(function(){ $("#registrant-search").trigger('input'); }, 3000);
 
 });
 
