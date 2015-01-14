@@ -321,9 +321,9 @@ $("#login-modal").submit(function(e) {
         alias: $("#lm-alias").val()
     };
 
-    var timer;
+    window.etherparty_timer = 0;
     $('#lm-submit').text("Registering, one moment ");
-    timer = setInterval(function() { 
+    window.etherparty_timer = setInterval(function() { 
       $("#lm-submit").append(" . "); timer += 1000; if (timer % 3000 == 0) $("#lm-submit").text('registering, one moment '); 
     }, 1000);
     $('#lm-submit').addClass('disabled');
@@ -351,7 +351,7 @@ $("#login-modal").submit(function(e) {
               $('#lm-submit').removeClass('disabled');
               $('#lm-submit').text("Submit Registration");
             }, 
-            complete: function() {  clearInterval(timer); }
+            complete: function() {  clearInterval(window.etherparty_timer); }
         });
     //} else {
     //    $('.lm-failed').fadeIn(1000);
