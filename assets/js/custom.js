@@ -693,10 +693,13 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
    $( "#registrant-search" ).on('input', function() {
       $(".search-results").text('searched ' + $("#registrant-search").val() );// Check input( $( this ).val() ) for validity here
       if( window.etherparty) {
+        var temp = '';
         window.etherparty.forEach(function(e) {
           //more logic here TODO
+          console.log(e);
           temp += "<tr> <th scope='row'>" + e[0] + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
         });
+        $(".search-results").append(temp);
       }
    });
 
