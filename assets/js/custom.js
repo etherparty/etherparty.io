@@ -339,7 +339,7 @@ $("#login-modal").submit(function(e) {
 
               $('.lm-success-id').text(d);
 
-              clearTimeout(timer);
+              clearInterval(timer);
 
               $('#lm-submit').text("Registration success!");
 
@@ -350,7 +350,7 @@ $("#login-modal").submit(function(e) {
               $('.lm-failed').fadeIn(1000);
               $('.lm-success').fadeOut(500);
 
-              clearTimeout(timer);
+              clearInterval(timer);
 
               $('#lm-submit').removeClass('disabled');
               $('#lm-submit').text("Submit Registration");
