@@ -692,10 +692,11 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 
    $( "#registrant-search" ).on('input', function() {
       var searchval = $("#registrant-search").val();
-      $(".search-results").text('searched ' + searchval );// Check input( $( this ).val() ) for validity here
-      if( window.etherparty) {
+      var tempData = window.etherparty;
+      //$(".search-results").text('searched ' + searchval );// Check input( $( this ).val() ) for validity here
+      if( tempData ) {
         var temp = '';
-        window.etherparty.forEach(function(e) {
+        tempData.forEach(function(e) {
           //more logic here TODO
           var piece1 = ('' + e[0]).slice(0,searchval.length);
           var piece2 = ('' + e[2]).slice(0,searchval.length);
