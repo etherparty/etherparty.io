@@ -324,7 +324,7 @@ $("#login-modal").submit(function(e) {
     var timer;
     $('#lm-submit').text("Registering, one moment ");
     timer = setInterval(function() { 
-      $("#lm-submit").append("."); timer += 1000; if (timer % 3000 == 0) $("#lm-submit").text('registering, one moment '); 
+      $("#lm-submit").append(" . "); timer += 1000; if (timer % 3000 == 0) $("#lm-submit").text('registering, one moment '); 
     }, 1000);
     $('#lm-submit').addClass('disabled');
 
@@ -339,9 +339,9 @@ $("#login-modal").submit(function(e) {
 
               $('.lm-success-id').text(d);
 
-              $('#lm-submit').text("Registration success!");
-
               clearTimeout(timer);
+
+              $('#lm-submit').text("Registration success!");
 
               getAndSaveUsers();
 
