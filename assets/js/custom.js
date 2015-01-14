@@ -691,13 +691,15 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
    getAndSaveUsers();
 
    $( "#registrant-search" ).on('input', function() {
-      $(".search-results").text('searched ' + $("#registrant-search").val() );// Check input( $( this ).val() ) for validity here
+      var searchval = $("#registrant-search").val();
+      $(".search-results").text('searched ' + searchval );// Check input( $( this ).val() ) for validity here
       if( window.etherparty) {
         var temp = '';
         window.etherparty.forEach(function(e) {
           //more logic here TODO
           console.log(e);
-          temp += "<tr> <th scope='row'>" + e[0] + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
+          if ( searchval == e[0].slice(0,searchval.length) || searchval == e[2].slice(0,searchval.length) )
+            temp += "<tr> <th scope='row'>" + e[0] + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
         });
         $(".search-results").append(temp);
       }
