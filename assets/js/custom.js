@@ -696,14 +696,19 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
       //$(".search-results").text('searched ' + searchval );// Check input( $( this ).val() ) for validity here
       if( tempData ) {
         var temp = '';
+        var maxLimit = 5;
+        var count = 0;
         tempData.forEach(function(e) {
           //more logic here TODO
           var piece1 = ('' + e[0]).slice(0,searchval.length);
           var piece2 = ('' + e[2]).slice(0,searchval.length);
 
-          if ( searchval == piece1 || searchval == piece2 )
+          if ( (searchval == piece1 || searchval == piece2) && count < 5) {
             temp += "<tr> <th scope='row'>" + e[0] + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
 
+
+            count++;
+          }
           console.log(piece1, piece2, searchval, searchval == piece1, searchval == piece2, temp);
         });
         $("#reg-table-searched").html(temp);
