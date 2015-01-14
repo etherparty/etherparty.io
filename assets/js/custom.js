@@ -697,8 +697,10 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
         var temp = '';
         window.etherparty.forEach(function(e) {
           //more logic here TODO
-          console.log(e[0], e[2], searchval);
-          if ( searchval == e[0].slice(0,searchval.length) || searchval == e[2].slice(0,searchval.length) )
+          var piece1 = '' + e[0].slice(0,searchval.length);
+          var piece2 = '' + e[2].slice(0,searchval.length);
+          console.log(piece1, piece2, searchval);
+          if ( searchval == piece1 || searchval == piece2 )
             temp += "<tr> <th scope='row'>" + e[0] + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
         });
         $("#reg-table-searched").html(temp);
