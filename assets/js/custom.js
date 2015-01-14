@@ -717,5 +717,5 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
         });
         $("#reg-table-searched").html(temp);
       }
-   });
+   }).trigger('input');
 });
