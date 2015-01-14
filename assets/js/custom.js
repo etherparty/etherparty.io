@@ -327,7 +327,7 @@ $("#login-modal").submit(function(e) {
               $('.lm-success').fadeIn(1000);
               $('.lm-failed').fadeOut(500);
 
-              $('.lm-success-id').text(+d);
+              $('.lm-success-id').text(d);
 
               $('#lm-submit').text("Registration success!");
 
@@ -695,7 +695,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
       if( window.etherparty) {
         window.etherparty.forEach(function(e) {
           //more logic here TODO
-          temp += "<tr> <th scope='row'>" + (e[0] + '') + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
+          temp += "<tr> <th scope='row'>" + e[0] + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
         });
       }
    });

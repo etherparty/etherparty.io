@@ -122,7 +122,7 @@ def execute():
 
 def decoderow(tup):
   each = tup
-  return (int(each[0]), each[1], binascii.unhexlify(each[2]).decode('ascii') if each[2] is not None else None, binascii.unhexlify(each[3]).decode('ascii') )
+  return (str(int(each[0])), each[1], binascii.unhexlify(each[2]).decode('ascii') if each[2] is not None else None, binascii.unhexlify(each[3]).decode('ascii') )
 
 @app.route("/users")
 def getusers():
