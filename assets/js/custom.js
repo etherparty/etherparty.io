@@ -704,7 +704,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
           var piece2 = ('' + e[2]).slice(0,searchval.length);
 
           if ( (searchval == piece1 || searchval == piece2) && count < 5) {
-            temp += "<tr> <th scope='row'>" + e[0] + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
+            temp += "<tr> <th scope='row'>" + e[0] + "</th> <td>" + e[2] + " </td> <td> " + e[1].slice(0,20) + "..." + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
 
 
             count++;
