@@ -339,8 +339,6 @@ $("#login-modal").submit(function(e) {
 
               $('.lm-success-id').text(d);
 
-              clearInterval(timer);
-
               $('#lm-submit').text("Registration success!");
 
               getAndSaveUsers();
@@ -350,8 +348,6 @@ $("#login-modal").submit(function(e) {
               $('.lm-failed').fadeIn(1000);
               $('.lm-success').fadeOut(500);
 
-              clearInterval(timer);
-
               $('#lm-submit').removeClass('disabled');
               $('#lm-submit').text("Submit Registration");
             }
@@ -360,6 +356,8 @@ $("#login-modal").submit(function(e) {
     //    $('.lm-failed').fadeIn(1000);
     //   $('.lm-success').fadeOut(500);
     //}
+
+    clearInterval(timer);
 
     return false;
 });
