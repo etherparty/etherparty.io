@@ -692,7 +692,20 @@
                           <!-- Input Form -->
                           <input type="search" id="registrant-search" name="searchbox" placeholder="Just start typing an ID#, alias" class="form-control">
                       </div><!-- /End Input Group -->
-                      <div class="search-results"></div>
+                      <div class="search-results">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>ID#</th>
+                              <th>Alias/Handle</th>
+                              <th>Proof of registration</th>
+                              <th>Registration Date</th>
+                            </tr>
+                          </thead>
+                          <tbody id="reg-table-searched">
+                          </tbody>
+                        </table>
+                    </div>
                   </div> <!-- /End Search -->
                 </div> <!-- end -->
 <br><br>

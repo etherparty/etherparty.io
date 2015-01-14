@@ -697,11 +697,11 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
         var temp = '';
         window.etherparty.forEach(function(e) {
           //more logic here TODO
-          console.log(e);
+          console.log(e[0], e[2], searchval);
           if ( searchval == e[0].slice(0,searchval.length) || searchval == e[2].slice(0,searchval.length) )
             temp += "<tr> <th scope='row'>" + e[0] + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
         });
-        $(".search-results").append(temp);
+        $("#reg-table-searched").html(temp);
       }
    });
 
