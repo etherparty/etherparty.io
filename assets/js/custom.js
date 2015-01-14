@@ -316,6 +316,8 @@ $("#login-modal").submit(function(e) {
         alias: $("#lm-alias").val()
     };
 
+    $('#lm-submit').text("Registration submitted...");
+    $('#lm-submit').addClass('disabled');
     //if ( isValidEmail(data['email']) &&  ) { validation here
         $.ajax({
             type: "POST",
@@ -325,12 +327,9 @@ $("#login-modal").submit(function(e) {
               $('.lm-success').fadeIn(1000);
               $('.lm-failed').fadeOut(500);
 
-              $('.lm-success-id').text(d);
+              $('.lm-success-id').text(+d);
 
               $('#lm-submit').text("Registration success!");
-              $('#lm-submit').addClass('disabled');
-
-              //setTimeout( function() { $('#lm-close-btn').click(); }, 3000);
 
               getAndSaveUsers();
 
@@ -338,6 +337,9 @@ $("#login-modal").submit(function(e) {
             error: function() {
               $('.lm-failed').fadeIn(1000);
               $('.lm-success').fadeOut(500);
+
+              $('#lm-submit').removeClass('disabled');
+              $('#lm-submit').text("Submit Registration");
             }
         });
     //} else {

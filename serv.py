@@ -114,7 +114,7 @@ def execute():
         print('successful addition to db', retval)
         cursor.close()
 
-        return Response(response=blobkey, status=200) 
+        return Response(response=str(int(blobkey)), status=200) 
 
    except Exception as e:
         print(e, e.__dict__)
