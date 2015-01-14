@@ -696,6 +696,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
    getAndSaveUsers();
 
    $( "#registrant-search" ).on('input', function() {
+      console.log('ran');
       var searchval = $("#registrant-search").val();
       var tempData = window.etherparty;
       //$(".search-results").text('searched ' + searchval );// Check input( $( this ).val() ) for validity here
@@ -717,5 +718,9 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
         });
         $("#reg-table-searched").html(temp);
       }
-   }).trigger('input');
+   });
+   
+   $("#registrant-search").trigger('input');
+
 });
+
