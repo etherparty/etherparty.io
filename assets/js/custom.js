@@ -718,8 +718,4 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
         $("#reg-table-searched").html(temp);
       }
    });
-   
-   $("#registrant-search").trigger('input');
-
 });
-
