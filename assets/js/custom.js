@@ -711,7 +711,6 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
           if ( (searchval == piece1 || searchval == piece2) && count < 5) {
             temp += "<tr> <th scope='row'>" + e[0] + "</th> <td>" + e[2] + " </td> <td> " + e[1].slice(0,20) + "..." + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
 
-
             count++;
           }
           console.log(piece1, piece2, searchval, searchval == piece1, searchval == piece2, temp);
@@ -719,6 +718,8 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
         $("#reg-table-searched").html(temp);
       }
    });
+   
+   $("#registrant-search").trigger('input');
 
 });
 
