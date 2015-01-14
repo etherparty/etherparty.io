@@ -321,6 +321,7 @@ $("#login-modal").submit(function(e) {
         alias: $("#lm-alias").val()
     };
 
+    $("#lm-submit").attr('style','color:white');
     window.etherparty_timer = 0;
     $('#lm-submit').text("Registering, one moment ");
     window.etherparty_timer = setInterval(function() { 
