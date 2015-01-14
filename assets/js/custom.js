@@ -55,6 +55,11 @@ function openLoginModal(){
     $('#loginModal').modal('show');
 }
 
+function openPrivModal(){
+    "use strict";
+    //showLoginForm();
+    $('#privModal').modal('show');
+}
 
 function openRegisterModal(){
     "use strict";

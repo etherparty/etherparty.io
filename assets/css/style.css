@@ -692,6 +692,19 @@ p {
     height: 650px;
 }
 
+/* ==========================================================================
+   0a. CUSTOM PRIVACY MODAL
+========================================================================== */ 
+.privacy .modal-dialog{
+    width: 800px;
+    margin-top: 105px;
+}
+
+.privacy .content{
+    overflow-y: scroll;
+    white-space: pre-wrap;
+    height: 250px;
+}
 
 /* ==========================================================================
    05. LOGIN/SIGNUP MODAL

@@ -163,7 +163,51 @@
                 </div><!-- /End Modal Dialog -->
             </div><!-- /End Modal -->
 
-            
+            <!-- Privacy and other modals -->
+            <div class="modal fade privacy" id="privModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        
+                        <!-- Modal-Header -->
+                        <div class="modal-header">
+                            <!-- Close Button -->
+                            <button id="lm-close-btn" type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <i class="icon icon_close_alt2"></i>
+                            </button>
+                            <!-- Modal-Header Title-->
+                            <h4 class="modal-title"><span>Etherparty</span> Privacy Policy</h4>
+                        </div><!-- /End Modal-Header -->
+
+                        <!-- Modal-Body Content -->
+                        <div class="modal-body">  
+                            <div class="box">
+                                 <div class="privacy content">
+                                    <!-- Login Form -->
+
+Collection and Use of Personal Information
+Personal information is data that can be used to identify or contact a single person.
+
+You may be asked to provide your personal information anytime you are in contact with Apple or an Apple affiliated company. Apple and its affiliates may share this personal information with each other and use it consistent with this Privacy Policy. They may also combine it with other information to provide and improve our products, services, content, and advertising. You are not required to provide the personal information that we have requested, but, if you chose not to do so, in many cases we will not be able to provide you with our products or services or respond to any queries you may have.
+
+Here are some examples of the types of personal information Apple may collect and how we may use it.
+
+What personal information we collect
+When you create an Apple ID, apply for commercial credit, purchase a product, download a software update, register for a class at an Apple Retail Store, contact us or participate in an online survey, we may collect a variety of information, including your name, mailing address, phone number, email address, contact preferences, and credit card information.
+When you share your content with family and friends using Apple products, send gift certificates and products, or invite others to participate in Apple services or forums, Apple may collect the information you provide about those people such as name, mailing address, email address, and phone number. Apple will use such information to fulfill your requests, provide the relevant product or service, or for anti-fraud purposes.
+In the U.S., we may ask for a government issued ID in limited circumstances including when setting up a wireless account and activating your device, for the purpose of extending commercial credit, managing reservations, or as required by law.
+How we use your personal information
+The personal information we collect allows us to keep you posted on Apple’s latest product announcements, software updates, and upcoming events. If you don’t want to be on our mailing list, you can opt out anytime by updating your preferences.
+We also use personal information to help us create, develop, operate, deliver, and improve our products, services, content and advertising, and for loss prevention and anti-fraud purposes.
+We may use your personal information, including date of birth, to verify identity, assist with identification of users, and to determine appropriate services. For example, we may use date of birth to determine the age of Apple ID account holders.
+From time to time, we may use your personal information to send important notices, such as communications about purchases and changes to our terms, conditions, and policies. Because this information is important to your interaction with Apple, you may not opt out of receiving these communications.
+We may also use personal information for internal purposes such as auditing, data analysis, and research to improve Apple’s products, services, and customer communications.
+                                 </div>
+                            </div><!-- /End Login Form Box -->
+                        </div><!-- /End Modal-Body -->
+                    </div><!-- /End Modal Content -->
+                </div><!-- /End Modal Dialog -->
+            </div><!-- /End Modal -->
+
             <!-- =========================================
                  Hero-Section
             ========================================== -->
@@ -908,16 +952,13 @@
                                     <a href="#">About</a>
                                 </li>
                                 <li>
-                                    <a href="#">Blog</a>
+                                    <a href="#blog.etherparty.io">Blog</a>
                                 </li>
                                 <li>
                                     <a href="#">Team</a>
                                 </li>
                                 <li>
-                                    <a href="#">Terms</a>
-                                </li>
-                                <li>
-                                    <a href="#">Privacy</a>
+                                    <a data-toggle="modal" href="javascript:void(0)" onclick="openPrivModal();" href="#">Privacy</a>
                                 </li>
                             </ul>
                             <p class="footer-copy">&copy; 2014 - Etherparty is proudly sponsored by<a href="http://VANBEX.com">Vanbex Labs.</a></p>
