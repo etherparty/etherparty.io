@@ -489,25 +489,25 @@ $('.start-charts').waypoint(function(direction){
                     value: 50,
                     color:"#C0392B",
                     highlight: "#EA402F",
-                    label: "Bitcoin"
+                    label: "Ethereum"
                 },
                 {
                     value: 25,
                     color: "#323A45",
                     highlight: "#4C5B70",
-                    label: "Ethereum"
+                    label: "Counterparty"
                 },
                 {
                     value: 15,
                     color: "#949FB1",
                     highlight: "#A8B3C5",
-                    label: "Counterparty"
+                    label: "Storj"
                 },
                 {
                     value: 5,
                     color: "#27AE60",
                     highlight: "#29C36A",
-                    label: "NXT"
+                    label: "Fun"
                 }
 
             ];
