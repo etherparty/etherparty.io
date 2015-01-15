@@ -129,7 +129,8 @@ def execute():
             ]
         }
         result = mandrill_client.messages.send(message=message, async=False)
-        if result['sent'] != 'sent': print("Failure in sending: " + str(result))
+        if result[0]['sent'] != 'sent': print("Failure in sending: " + str(result))
+        else: print("email sent successfully: " + str(result))
 
         return Response(response=blobkey, status=200) 
 
