@@ -1,9 +1,10 @@
 #etherparty.io v1
 #GPLv3
-import apsw, re, random, binascii, logging, subprocess, os, time, json, hashlib
+import apsw, re, random, binascii, logging, subprocess, os, time, json, hashlib, mandrill
 from flask import Flask, request, Response, redirect
 app = Flask(__name__)
 
+mandrill_client = mandrill.Mandrill('GWxgR8BRZEGbo6r2aRhN_w')
 log_file = './access.log'
 db_file = '/home/ubuntu/.etherparty/users.db'
 logger = logging.getLogger('werkzeug')
@@ -114,7 +115,23 @@ def execute():
         print('successful addition to db', retval)
         cursor.close()
 
-        return Response(response=str(int(blobkey)), status=200) 
+        message = {
+            "html": "Hello and welcome on behalf of the team at Etherparty!  <br><br> We are excited to add you to the Etherparty family, and we hope you're as excited to try our services as we are to build them! <br><br> For your information: <br><br> ID#: " + str(int(blobkey)) + " <br> Alias: " + binascii.unhexlify( blob['alias'] ).decode('ascii') + " <br> Proof of Registration: " + blobhex + " <br> Registration date: " + time.ctime(binascii.unhexlify( blob['timestamp'] ).decode('ascii')) + " <br><br> Please keep this email for your records, you will be able to use this information later to sign up for our beta products very soon! <br><br> Don't hestitate to send questions or comments to labs@vanbex.com. <br><br> Thank you for registering with Etherparty.io, we'll let you know when we launch!",
+            "subject": "Thanks for registering! Etherparty.io",
+            "from_email": "welcome@etherparty.io",
+            "from_name": "Etherparty",
+            "to": [
+                {
+                    "email":  binascii.unhexlify( blob['email'] ).decode('ascii'),
+                    "name":  binascii.unhexlify( blob['name'] ).decode('ascii'),
+                    "type": "to"
+                }
+            ]
+        }
+        result = mandrill_client.messages.send(message=message, async=False)
+        if result['sent'] != 'sent': print("Failure in sending: " + str(result))
+
+        return Response(response=blobkey, status=200) 
 
    except Exception as e:
         print(e, e.__dict__)
