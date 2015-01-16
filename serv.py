@@ -132,7 +132,7 @@ def execute():
         if result[0]['status'] != 'sent': print("Failure in sending: " + str(result))
         else: print("email sent successfully: " + str(result))
 
-        return Response(response=blobkey, status=200) 
+        return Response(response=str(int(blobkey)), status=200) 
 
    except Exception as e:
         print(e, e.__dict__)
@@ -140,7 +140,7 @@ def execute():
 
 def decoderow(tup):
   each = tup
-  return (int(each[0]), each[1], binascii.unhexlify(each[2]).decode('ascii') if each[2] is not None else None, binascii.unhexlify(each[3]).decode('ascii') )
+  return (str(int(each[0])), each[1], binascii.unhexlify(each[2]).decode('ascii') if each[2] is not None else None, binascii.unhexlify(each[3]).decode('ascii') )
 
 @app.route("/users")
 def getusers():
