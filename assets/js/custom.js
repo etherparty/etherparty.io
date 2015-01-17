@@ -220,7 +220,7 @@ $('.venobox').venobox();
     fuck TWEETIE -  TWITTER FEED PLUGIN THAT WORKS WITH NEW Twitter 1.1 API
 ==================================================================== */
 $.ajax({
-    type: "POST",
+    type: "GET",
     url: "tweets",
     success: function(d) {
       d=JSON.parse(d);
