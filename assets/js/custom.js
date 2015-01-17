@@ -223,22 +223,15 @@ $.ajax({
     type: "GET",
     url: "tweets",
     success: function(d) {
-        var linking = function (tweet) {
-            var twit = tweet.replace(/(https?:\/\/([-\w\.]+)+(:\d+)?(\/([\w\/_\.]*(\?\S+)?)?)?)/ig,'<a href="$1" target="_blank" title="Visit this link">$1</a>')
-                 .replace(/#([a-zA-Z0-9_]+)/g,'<a href="https://twitter.com/search?q=%23$1&amp;src=hash" target="_blank" title="Search for #$1">#$1</a>')
-                 .replace(/@([a-zA-Z0-9_]+)/g,'<a href="https://twitter.com/$1" target="_blank" title="$1 on Twitter">@$1</a>');
-
-            return twit;
-        };
 
       d=JSON.parse(d);
       console.log(d);
       var text = '';
-      d.forEach(function(e) { text +=  '<li>' + linking(e[0]) + ' - <span class="date">' + e[1] + '</span></li>'});
-      $('.tweet').html(text);
+      d.forEach(function(e) { text +=  '<li>' + (e[0]) + ' - <span class="date">' + e[1] + '</span></li>'});
+      $('.subtweet').html(text);
     },
     error: function() {
-      $('.tweet').html('<div> loading tweets failed... </div>');
+      $('.subtweet').html('<div> loading tweets failed... </div>');
     } 
 });
 

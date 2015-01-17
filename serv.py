@@ -168,7 +168,7 @@ def gettweets():
     timenow = int(time.time())
     if (timenow - timelastchecked) > 900:
       try:
-        public_tweets = tweepy_api.user_timeline(count=5)
+        public_tweets = tweepy_api.user_timeline(count=3)
         tweets = [ [tweet.text, tweet.created_at.ctime() ] for tweet in public_tweets ]
         timelastchecked = timenow
       except Exception as e:
