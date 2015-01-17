@@ -232,7 +232,7 @@ $.ajax({
         };
 
       d=JSON.parse(d);
-      console.log(d);
+      //console.log(d);
       var text = '';
       d.forEach(function(e) { text +=  '<li>' + linking(e[0]) + ' - <span class="date">' + e[1] + '</span></li>'});
       $('.subtweet').html(text);
@@ -700,7 +700,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 // our custom fucking code
 //
     function getAndSaveUsers() {
-      console.log("Called getAndSaveUsers");
+      //console.log("Called getAndSaveUsers");
       $.ajax({
           type: "GET",
           url: "users",
@@ -708,7 +708,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
               var temp = "";
               window.etherparty = JSON.parse(d); d = JSON.parse(d);
               d=d.slice(d.length - 5, d.length);
-              console.log(typeof d, d.length - 5, d.length, d.slice(d.length - 5, d.length) );
+              //console.log(typeof d, d.length - 5, d.length, d.slice(d.length - 5, d.length) );
               
               d.forEach(function(e) {
                 temp += "<tr> <th scope='row'>" + (e[0] + '') + "</th> <td>" + e[2] + " </td> <td> " + e[1] + "</td> <td> " + (new Date( +(e[3] + "000") )).toDateString() + "</tr>";
@@ -721,7 +721,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
    getAndSaveUsers();
 
    $( "#registrant-search" ).on('input', function() {
-      console.log('ran');
+      //console.log('ran');
       var searchval = $("#registrant-search").val();
       var tempData = window.etherparty;
       //$(".search-results").text('searched ' + searchval );// Check input( $( this ).val() ) for validity here
@@ -739,7 +739,7 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
 
             count++;
           }
-          console.log(piece1, piece2, searchval, searchval == piece1, searchval == piece2, temp);
+          //console.log(piece1, piece2, searchval, searchval == piece1, searchval == piece2, temp);
         });
         $("#reg-table-searched").html(temp);
       }
