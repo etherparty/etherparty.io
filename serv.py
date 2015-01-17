@@ -14,7 +14,7 @@ logger = logging.getLogger('werkzeug')
 logger.setLevel(666)
 logger.addHandler(logging.FileHandler(log_file))
 tweets = [] #store tweets
-timechecked = 0 #store timelastchecked for tweets
+timelastchecked = 0 #store timelastchecked for tweets
 
 def log__():
    _env = request.environ
