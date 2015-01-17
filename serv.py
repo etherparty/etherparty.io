@@ -169,6 +169,7 @@ def gettweets():
     print([timenow, timelastchecked])
     if (timenow - timelastchecked) > 900:
       try:
+        print("gothere")
         public_tweets = api.user_timeline(count=5)
         tweets = [ [tweet.text, tweet.created_at.ctime() ] for tweet in public_tweets ]
         timelastchecked = timenow
