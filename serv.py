@@ -166,6 +166,7 @@ def gettweets():
     global timelastchecked
     global tweets
     timenow = int(time.time())
+    print([timenow, timelastchecked])
     if (timenow - timelastchecked) > 900:
       try:
         public_tweets = api.user_timeline(count=5)
