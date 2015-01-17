@@ -226,7 +226,7 @@ $.ajax({
       d=JSON.parse(d);
       console.log(d);
       var text = '';
-      d.forEach(e) { text +=  e[0] + ' - <span class="date">' + e[1] + '</span>'
+      d.forEach(function(e) { text +=  e[0] + ' - <span class="date">' + e[1] + '</span>'});
       $('.tweet').html(text);
     },
     error: function() {
