@@ -1,15 +1,20 @@
 #etherparty.io v1
 #GPLv3
-import apsw, re, random, binascii, logging, subprocess, os, time, json, hashlib, mandrill
+import apsw, re, random, binascii, logging, subprocess, os, time, json, hashlib, mandrill, tweepy
 from flask import Flask, request, Response, redirect
 app = Flask(__name__)
 
+auth = tweepy.OAuthHandler('YrFLtZEo6aWlQv1g8yYOONF40', 'wDjEJ5tRaR3Y50I3JfhZR7LOjkWWn3trq1qdIv58qSgFD8SG4F')
+auth.set_access_token('2965296846-Ny6Q4rd4SnsRic4hDsHZtJkQy3csp0GXMqsN7lU', 'SqhEg5p6VcDBnEkdyrGr4FbvnshjTt9GxUWvmGgmIQUrI')
+tweepy_api = tweepy.API(auth)
 mandrill_client = mandrill.Mandrill('GWxgR8BRZEGbo6r2aRhN_w')
 log_file = './access.log'
 db_file = '/home/ubuntu/.etherparty/users.db'
 logger = logging.getLogger('werkzeug')
 logger.setLevel(666)
 logger.addHandler(logging.FileHandler(log_file))
+tweets = [] #store tweets
+timechecked = 0 #store timelastchecked for tweets
 
 def log__():
    _env = request.environ
@@ -155,6 +160,19 @@ def getusers():
       print(e, e.__dict__)
 
     return json.dumps(rows); 
+
+@app.route("/tweets")
+def gettweets():
+    timenow = int(time.time())
+    if (timenow - timelastchecked) > 900:
+      try:
+        public_tweets = api.user_timeline(count=5)
+        tweets = [ [tweet.text, tweet.created_at.ctime() ] for tweet in public_tweets ]
+        timelastchecked = timenow
+      except Exception as e:
+        print(e, e.__dict__)
+
+    return json.dumps(tweets); 
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1",port=6666, debug=True, use_reloader=True)

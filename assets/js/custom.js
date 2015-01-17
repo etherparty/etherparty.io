@@ -217,13 +217,24 @@ $("#owl-carousel-shots-phone").owlCarousel({
 $('.venobox').venobox();
 
 /* ===================================================================
-    TWEETIE -  TWITTER FEED PLUGIN THAT WORKS WITH NEW Twitter 1.1 API
+    fuck TWEETIE -  TWITTER FEED PLUGIN THAT WORKS WITH NEW Twitter 1.1 API
 ==================================================================== */
-$('.tweet').twittie({
-    apiPath : 'assets/js/plugins/twitter/api/tweet.php',
-    count: 2,
-    template: '{{tweet}} - <span class="date">{{date}}</span>'
+$.ajax({
+    type: "POST",
+    url: "tweets",
+    success: function(d) {
+      console.log(d);
+      var text = '';
+
+      d.forEach(e) { text +=  d[0] + ' - <span class="date">' + d[1] + '</span>'
+      $('.tweet').html(text);
+
+    },
+    error: function() {
+      $('.tweet').html('<div> loading tweets failed... </div>');
+    } 
 });
+
 
 
 /* =================================
