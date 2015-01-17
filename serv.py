@@ -163,6 +163,7 @@ def getusers():
 
 @app.route("/tweets")
 def gettweets():
+    global timelastchecked
     timenow = int(time.time())
     if (timenow - timelastchecked) > 900:
       try:
