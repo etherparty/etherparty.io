@@ -513,7 +513,7 @@ $('.start-charts').waypoint(function(direction){
                     value: 25,
                     color: "#323A45",
                     highlight: "#4C5B70",
-                    label: "Counterparty"
+                    label: "Bitcoin"
                 },
                 {
                     value: 15,
