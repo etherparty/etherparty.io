@@ -8,8 +8,8 @@ $(document).ready(function() {
     "width": 1280,
     "height": 720,
     "path": "assets/images/video/",
-    "filename": "blueplexus.websd",
-    "types": ["webm"],
+    "filename": "blueplexus.mp4",
+    "types": ["mp4"],
 	"loop": true,
 	});
 
