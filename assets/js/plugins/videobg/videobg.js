@@ -8,8 +8,8 @@ $(document).ready(function() {
     "width": 1280,
     "height": 720,
     "path": "assets/images/video/",
-    "filename": "Floating Blue Plexus Background",
-    "types": ["webm, mp4"],
+    "filename": ["blueplexus.mp4", "blueplexus.webmhd"]
+    "types": ["mp4", "webm"],
 	"loop": true,
 	});
 
