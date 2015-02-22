@@ -9,7 +9,7 @@ $(document).ready(function() {
       "height": 720,
       "path": "assets/images/video/",
       "filename": "blueplexus",
-      "types": ["webm"],
+      "types": ["webm", "mp4"],
       "loop": true,
     });
 
