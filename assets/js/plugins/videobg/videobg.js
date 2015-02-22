@@ -8,7 +8,7 @@
       "width": 1280,
       "height": 720,
       "path": "assets/images/video/",
-      "filename": "plexusbackground.webmsd",
+      "filename": "PlexusBackground.webmsd",
       "types": ["webm"],
       "loop": true,
     });
