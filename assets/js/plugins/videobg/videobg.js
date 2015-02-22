@@ -8,7 +8,7 @@ $(document).ready(function() {
       "width": 1280,
       "height": 720,
       "path": "assets/images/video/",
-      "filename": "blueplexus.webm",
+      "filename": "plexusbackground.webmsd",
       "types": ["webm"],
       "loop": true,
     });
