@@ -1,0 +1,244 @@
+<!doctype html>
+
+<html>
+  
+  <head>
+    <title>etherparty</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><b>etherparty</b></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="index.html">Home</a>
+            </li>
+            <li>
+              <a href="#about">About</a>
+            </li>
+            <li>
+              <a href="#contact">Contract Engine</a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Explorer<br><b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#">Find Contract</a>
+                </li>
+                <li>
+                  <a href="#">API</a>
+                </li>
+                <li>
+                  <a href="#">Wiki</a>
+                </li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Resources</li>
+                <li>
+                  <a href="#">Documentation</a>
+                </li>
+                <li>
+                  <a href="#">Release Notes</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <div class="form-group"></div>
+            <span class="badge">&nbsp;XCP / BTC: &nbsp;</span>
+            <div class="form-group">
+              <span class="badge">Current Fuel Price: 2 XCP</span>
+            </div>
+          </form>
+        </div>
+        <!--/.navbar-collapse -->
+      </div>
+    </div>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Explore Etherparty</h1>
+        <h4 class="media-heading">Smart Contracts on the Bitcoin Blockchain</h4>
+        <p style><span style="color: rgb(0, 0, 0); font-family: Arial, Helvetica, sans; font-size: 11px; line-height: 14px; text-align: justify;">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lore</span></p><br>
+        <div class="form-group">
+          <div class="controls">
+            <label class="control-label">Sign up for the Beta Release!</label>
+            <input type="email" class="form-control">
+            <br>
+            <a class="btn btn-primary">Register</a>
+          </div>
+        </div><br>
+        <div class="col-md-4">
+          <label class="form-label">etherparty v1 release:</label>
+          <ol>
+            <li>December 31, 2014: PoC4</li>
+            <li>January 15, 2014: Execute Alpha</li>
+            <li>February 28, 2014: Create and Publish</li>
+          </ol>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">What is etherparty?</label>
+          <ul>
+            <li>The front-end for executing Smart Contracts on the Blockchain</li>
+            <li>Create and publish your own Smart Contracts</li>
+            <li>Platform for building DACS, DApps, DAOs, and DGames</li>
+          </ul>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <label class="form-label">About Smart Contracts:</label>
+            <ul>
+              <li>Smart Contracts need fuel to run</li>
+              <li>Smart Contracts can be saved and re-used</li>
+              <li>Smart Contracts are encoded into the Bitcoin Blockchain</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+    <div class="form-group">
+      <div class="controls"></div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <section>
+            <span class="label label-default">Powerball Game</span><br>
+            <label class="form-label">Play Smart Contract Powerball!</label><br>
+            <span class="help-block" style>Bitcoin-style Powerball Lottery on the Blockchain, play game below:</span>
+          </section>
+          <div class="container">
+            <div class="row">
+              <form method="POST">
+                <div id="dynamicInput">
+                  <div type="container">
+                    <button onclick="addInput('dynamicInput');" type="button" data-toggle="tooltip" data-placement="left" title="Tooltip on left">Pick Numbers:</button><br><br>
+                    <div type="newdiv">
+                      <input="text" style="width:20px;" name="myInputs[]" size="5"></input="text">
+                    </div>
+                  </div>
+                </div>
+              </form>
+                    <script>
+                var counter = 1;
+                var limit = 8;
+
+                function addInput(divName) {
+                  if (counter == limit) {
+                    alert("7 numbers is the limit");
+                  } else {
+                    var newdiv = document.createElement('div');
+                    newdiv.innerHTML = "# " + (counter) + "  <br> <input type='text' style='width:20px;' name='myInputs[]'>";
+                    document.getElementById(divName).appendChild(newdiv);
+                    newdiv.style.display = "inline-block";
+                    counter++;
+                  }
+                }
+              </script>
+            </div>
+          </div><br>
+          <div class="form-group">
+            <label class="form-label">BTC Address (to pay):</label>
+            <input type="text" class="form-control">
+            <span class="help-block"><b>Please note: fuel price to play is 3 XCP and will be included when you press Play below:</b></span><a class="btn btn-primary">Play Powerball!</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <span class="label label-default">Smart Contract DAC</span><br>
+          <b>Smart Online Store DAC</b><span class="help-block">Smart eCommerce DACs are fulfillment programs that handle sales requests, manage inventory, and collect payments. </span>
+          <div class="form-group">
+            <label class="control-label">RSS Feed lists your Product Inventory:</label>
+            <span class="help-block">See this<a href="https://developers.google.com/shopping-content/managing-local-product-data/content-api-inventory-feed"> link</a> for help.</span>
+            <div class="controls">
+              <input type="text" placeholder="http://" class="form-control">
+            </div>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="true">Digital Goods</label>
+         <br>
+            <label>
+              <input type="checkbox" value="true">Physical Goods</label>
+          </div>
+          <label class="form-label">After payment is sent, funds are held until:</label>
+          <div class="radio">
+            <label>
+              <input type="radio">Buyer closes contract</label><br>
+            <label>
+              <input type="radio">Seller closes contract</label><br>
+            <input type="radio">Contract closes at payment</label>
+          </div>
+          <label class="form-label">Contract created when:</label>
+          <select class="form-control">
+            <option>Buyer sends request</option>
+            <option>Buyer sends payment</option>
+            <option>Seller approves payment</option>
+          </select>
+          <label class="form-label">Contract Runs:</label>
+          <select class="form-control">
+            <option>Until sold out</option>
+            <option>Until Expiration Date</option>
+            <option>Until fuel is empty</option>
+          </select>
+          <label class="form-label">Expiration Date:</label>
+          <input type="text" placeholder="mm/dd/yy" class="form-control">
+          <span class="help-block">Fuel is required to run the contract. This program will collect 3% of payments, calculated in USD per transaction performed. </span>
+          <label class="form-label">Email Address</label>
+          <input type="number" class="form-control">An email has been sent with further instructions - please check your fuel charges and send BTC to start this DAC. <br>
+          <a class="btn btn-primary">Send</a><br></div><br>
+        <div class="col-md-4">
+          <span class="label label-default">Execute Smart Contracts</span><br>
+          <span class="help-block">Run these Templates and create a custom Smart Contract result. </span>
+          <label class="form-label">Select Program:</label>
+          <select class="form-control">
+            <option>Check Powerball Lotto numbers</option>
+            <option>Send Fuel to contract</option>
+            <option>Check Contract Status</option>
+          </select><br>
+          <div class="form-group">
+            <label class="control-label">Provide Unique Identifier:</label>
+            <div class="controls">
+              <input type="text" placeholder="keyword or name or numbers" class="form-control">
+              <br></div>
+            <label class="form-label">BTC Address (will be charged for Fuel):</label>
+            <input type="text" class="form-control">
+            <span class="help-block">(Contracts need Fuel to prevent infinite loops!)</span><span class="help-block"><b>Please note: Price of 3 XCP is required to execute.</b></span><a class="btn btn-primary">Run</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="drag-mask" data-ds-form="select" style="width: 750px; height: 34px;"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <br>
+            <div class="row"></div>
+            <hr>
+            <footer>
+              <p>&copy; etherparty 2014</p>
+            </footer>
+            <!-- /container -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

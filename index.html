@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
 <head>
@@ -756,5 +757,177 @@ If you have any questions about this Privacy Policy, please contact us.
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/plugins/videobg/videobg.js"></script>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>EtherParty.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./assets/bootstrap.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <style> *{ font-family: 'Open Sans', sans-serif;}  </style>
+    <link rel="stylesheet" type="text/css" href="./assets/flatui.css">
+    <link rel="shortcut icon" href="img/favicon.ico">
+  </head>
+  <body>
+    <div class="col-xs-2"> </div>
+    <div class="container col-xs-10 ">
+    <br>
+
+    <nav class="navbar col-xs-10 navbar-inverse navbar-embossed">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">EtherParty! Rawr </a>
+    </div>
+
+     <ul class="nav navbar-nav navbar-right">
+      <li><a href="builder">See Contract Examples</a></li>
+      <li><a>|</a></li>
+      <li><a href="contracts">View all Contracts</a></li>
+    </ul>
+
+    </nav>
+
+      <div class="col-xs-10">
+
+    <div>
+    <h2 class="text-center">Welcome to Smart Contracts on the Blockchain</h2>
+    <small class="hidden"> Status: counterpartyd <br> Status: Bitcoind <br> Status: XYZ <br> </small>
+    </div>
+      <br>
+<blockquote class="small text-left">
+<li>Step 1: Create Contract (use examples provided as we're still in Alpha!)</li>
+<li>Step 2: Publish Contract via Etherparty and claim your Contract ID</li>
+<li>Step 3: Execute Contract with your values</li>
+<li>First time running Etherparty? Create a New Address and load up on Gas - you're going to need it to fuel your contract!</li>
+</blockquote>
+
+    <div class="hidden well well-md text-center">
+Available Addresses: X Y Z
+<br>
+Gas: 0 0 0
+<br>
+BTC: 0 0 0
+    </div>
+
+    <div class="row">
+      <form name="publish" action="/publish" method="post">
+        <h4 class="col-xs-6 text-center"> Publish 
+        <input placeholder="source address" class="form-control" name="source" type="text" /> 
+        <input placeholder="contract/code-hex" class="form-control" name="codehex" type="text" />  
+        <input name="gasprice" placeholder="gas price" class="form-control" type="text" />         
+        <input name="startgas" placeholder="start gas" class="form-control" type="text" />         
+        <input name="endowment" placeholder="endowment" class="form-control" type="text" />       
+        <input name="endowment" placeholder="endowment" class="form-control invisible" type="text" />       
+        <br>
+        <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Publish Contract" />  
+
+        <p class="help-block "> This allows you to publish a contract to the blockchain, use the transaction id to get the contract ID. </p>      </h4>
+        </h4> 
+      </form>
+
+      <form name="execute" action="/execute" method="post">
+        <h4 class="col-xs-6 text-center"> Execute 
+        <input placeholder="source address" class="form-control" name="source" type="text" /> 
+        <input placeholder="contract id" class="form-control" name="contract" type="text" />
+        <input name="gasprice" placeholder="gas price" class="form-control" type="text" /> 
+        <input name="startgas" placeholder="start gas" class="form-control" type="text" /> 
+        <input name="value" placeholder="value" class="form-control" type="text" />
+        <input name="payload" placeholder="payload" class="form-control" type="text" /> 
+        <br>
+        <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Execute Contract" />  
+
+        <p class="help-block "> This allows you to execute a piece of contract code against another contract ID, use the transaction id to get the result. </p></h4>
+	</h4> 
+
+      </form>
+
+    </div>
+
+<div class="row">
+      <form name="gascalc" action="/gascalc" method="post">
+        <h4 class="col-xs-push-1 col-xs-10"> 
+          <input name="codehex" placeholder="contract/code hex" class="form-control" type="text" />
+          <br>
+          <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Calculate startgas/gasprice" />
+          <p class="help-block text-center"> Enter contract here to have the gas price calculated for you, or see below for more information. </p>
+        </h4>
+      </form>
+<br>
+<blockquote class="small col-xs-push-2 col-xs-10 text-left">
+<li>Every transaction must contain a GASPRICE and STARTGAS value.</li> 
+<li>STARTGAS is the amount of "gas" that the transaction is assigned.</li>
+<li>GASPRICE is the fee that the transaction pays per unit of gas.</li>
+<li>from the <a href="https://github.com/ethereum/wiki/wiki/Ethereum-Development-Tutorial#gas"> Ethereum Development Guide</a> </li>
+</blockquote>
+</div>
+
+<br> <div class="row">
+<div class="col-xs-push-2 col-xs-8">
+<div class="progress"> <div class="progress-bar progress-bar-info" style="width: 100%;"> </div> </div> </div> </div> <br>
+
+    <div class="row">
+      <form name="findID" action="/findcontractid" method="post">
+        <h4 class="col-xs-push-1 col-xs-10 text-center"> 
+        <input name="txid" placeholder="txid" class="form-control" type="text" />
+        <br>
+        <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Find ContractID" />
+        <p class="help-block "> This allows you to retreive the contractID for a published transaction, which is useful in executing against other scripts. </p>   </h4>
+        </h4>
+      </form>
+    </div>
+      <form name="findeval" action="/fetchcontractresult" method="post">
+        <h4 class="col-xs-push-1 col-xs-10 text-center" > 
+        <input name="txid" placeholder="txid" class="form-control" type="text" />
+        <br>
+        <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Fetch Contract Result" />
+        <p class="help-block "> This retreives the result of a given contract piece, when run against another contract. </p>   </h4>
+       </form>
+<div class=row></div>
+
+<br> <div class="row">
+<div class="col-xs-push-2 col-xs-8">
+<div class="progress"> <div class="progress-bar progress-bar-warning" style="width: 100%;"> </div> </div> </div> </div> <br>
+
+    <div class="row">
+      <form name="getgas" action="/getgas" method="post">
+        <h4 class="col-xs-push-1 col-xs-5" >
+        <input name="address" placeholder="bitcoin address" class="form-control" type="text" /> <br>
+        <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Get Gas" />
+        <p class="help-block "> This consumes btc and gives your specified address gas, you need to have at least 0.001 btc before attemping this. </p>   </h4>
+      </form>
+      <form name="checkgas" action="/checkgas" method="post">
+        <h4 class="col-xs-push-1 col-xs-5" >
+        <input name="address" placeholder="bitcoin address" class="form-control" type="text" /> <br>
+        <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Check Gas" />
+        <p class="help-block "> This tells you your specified address' collected gas. </p>   </h4>
+      </form>
+      </div>
+
+<div class="row">
+      <form name="payload" action="/payload" method="post">
+        <h4 class="col-xs-push-1 col-xs-5"> 
+          <input name="payload" placeholder="numeric value" class="form-control" type="text" /> <br>
+          <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Construct Payload" />
+          <p class="help-block "> This creates a hex representation to use to construct a payload, example payload would be "4 4 4 4" </p>
+        </h4>
+      </form>
+      <form name="getaddr" action="/getaddress" method="post">
+        <h4 class="col-xs-push-1 col-xs-5"> 
+          <input name="address" placeholder="bitcoin address" class="invisible form-control" type="text" /> <br>
+          <input type="submit" class="col-xs-12 btn btn-lg btn-danger" value="Get New Address" />  
+          <p class="help-block "> This creates an address for you to use on our server, you will need to put Test Bitcoins here to get Gas. </p>
+        </h4>
+      </form>
+</div>
+
+<br> <div class="row">
+<div class="progress"> <div class="progress-bar" style="width: 100%;"> </div> </div> </div> 
+
+    <!-- footer -->
+    <small class="col-xs-12 pull-right text-center"> git: git@github.com:etherparty/etherparty.io.git | PoC3 | copyright vanbexlabs 2014 <small>
+    </div>
+  </div>
+>>>>>>> 27238ec29c4619656a09d8a921aa09f552392c5b
 </body>
 </html>

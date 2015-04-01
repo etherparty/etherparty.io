@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>EtherParty.io</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./assets/bootstrap.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <style> *{ font-family: 'Open Sans', sans-serif;}  </style>
+  <link rel="stylesheet" type="text/css" href="./assets/flatui.css">
+  <link rel="shortcut icon" href="img/favicon.ico">
+</head>
+
+<body>
+  <div class="col-xs-1"> </div>
+  <div class="container col-xs-10">
+  <br>
+
+  <nav class="navbar col-xs-10 col-xs-push-1 navbar-inverse navbar-embossed">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">EtherParty! Rawr </a>
+    </div>
+
+     <ul class="nav navbar-nav navbar-right">
+      <li><a href="/">Back</a></li>
+    </ul>
+
+  </nav>
+
+  <div class="col-xs-10 col-xs-push-1">
+
+    <h2 class="text-center">Smart Contracts Builder</h2>
+  <div class="row">
+  <form name="compile" action="/compile" method="post">
+  <h5 class="well well-md text-center">
+  <textarea type="text" name="contract" class="form-control" rows="10">
+// Sample contract - Namecoin
+def register(k, v):
+    if !self.storage[k]: # Is the key not yet taken?
+        # Then take it!
+        self.storage[k] = v
+        return(1)
+    else:
+        return(0) // Otherwise do nothing
+
+  </textarea>
+  <br>
+         <input type="submit" class="btn btn-lg btn-danger" value="Create Contract" />  
+
+     <p class="help-block "> This allows you to compile a contract into hex code, <br> which you can use to publish on the blockchain. </p>
+   </h5> 
+  </form>
+  </div>
+                                           <b>More examples:
+<div class="row well well-md text-center">  
+
+  <div class="row">
+    <div class="col-xs-3"> Moduluo Fun
+    <textarea class="form-control" rows="8">
+def moduloFun(x):
+    xmod2 = x % 2
+    steps = 0
+
+    while x > 1:
+        steps += 1
+        if xmod2 == 0:
+            x /= 2
+        else:
+            x = 3 * x + 1
+
+    return(steps)
+    </textarea>
+    </div>
+
+    <div class="col-xs-6"> Simple blockchain storage
+    <textarea class="form-control" rows="8">
+def register(k, v):
+    if !self.storage[k]:
+        self.storage[k] = v
+
+    </textarea>
+    </div>
+
+    <div class="col-xs-3"> Multiply by 6
+    <textarea class="form-control" rows="8">
+def multiply6(v):
+    return(v*6)
+    </textarea>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">  Datafeed
+    <textarea class="form-control" rows="8">
+# Database updateable only by the original creator
+data creator
+
+def init():
+    self.creator = msg.sender
+
+def update(k, v):
+    if msg.sender == self.creator:
+        self.storage[k] = v
+
+def query(k):
+    return(self.storage[k])
+
+    </textarea>
+    </div>
+
+    <div class="col-xs-6"> Namecoin
+    <textarea class="form-control" rows="8">
+// Namecoin
+def register(k, v):
+    if !self.storage[k]: # Is the key not yet taken?
+        # Then take it!
+        self.storage[k] = v
+        return(1)
+    else:
+        return(0) // Otherwise do nothing
+
+    </textarea>
+    </div>
+
+  </div>
+    <div class="row">
+    <div class="col-xs-12"> Crowdfunder
+    <textarea class="form-control" rows="8">
+data campaigns[2^80](recipient, goal, deadline, contrib_total, contrib_count, contribs[2^50](sender, value))
+
+def create_campaign(id, recipient, goal, timelimit):
+    if self.campaigns[id].recipient:
+        return(0)
+    self.campaigns[id].recipient = recipient
+    self.campaigns[id].goal = goal
+    self.campaigns[id].deadline = block.timestamp + timelimit
+
+def contribute(id):
+    # Update contribution total
+    total_contributed = self.campaigns[id].contrib_total + msg.value
+    self.campaigns[id].contrib_total = total_contributed
+
+    # Record new contribution
+    sub_index = self.campaigns[id].contrib_count
+    self.campaigns[id].contribs[sub_index].sender = msg.sender
+    self.campaigns[id].contribs[sub_index].value = msg.value
+    self.campaigns[id].contrib_count = sub_index + 1
+
+    # Enough funding?
+    if total_contributed >= self.campaigns[id].goal:
+        send(self.campaigns[id].recipient, total_contributed)
+        self.clear(id)
+        return(1)
+
+    # Expired?
+    if block.timestamp > self.campaigns[id].deadline:
+        i = 0
+        c = self.campaigns[id].contrib_count
+        while i < c:
+            send(self.campaigns[id].contribs[i].sender, self.campaigns[id].contribs[i].value)
+            i += 1
+        self.clear(id)
+        return(2)
+
+def progress_report(id):
+    return(self.campaigns[id].contrib_total)
+
+# Clearing function for internal use
+def clear(id):
+    if self == msg.sender:
+        self.campaigns[id].recipient = 0
+        self.campaigns[id].goal = 0
+        self.campaigns[id].deadline = 0
+        c = self.campaigns[id].contrib_count
+        self.campaigns[id].contrib_count = 0
+        self.campaigns[id].contrib_total = 0
+        i = 0
+        while i < c:
+            self.campaigns[id].contribs[i].sender = 0
+            self.campaigns[id].contribs[i].value = 0
+            i += 1
+
+    </textarea>
+    </div>
+
+  </div>
+</div>
+
+    </b>
+<div class="well well-md text-center"> Serpent branch running: -poc7. View more examples at: <a href="https://github.com/ethereum/serpent/tree/master/examples">https://github.com/ethereum/serpent/tree/master/examples</a> </div> 
+
+  <div class="col-xs-1"> </div>
+
+</body>
+</html>
